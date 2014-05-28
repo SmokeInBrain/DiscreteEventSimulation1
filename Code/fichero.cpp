@@ -1,6 +1,6 @@
-#include "DatosEntrada.h"
+#include "fichero.h"
 
-Estadistica obtenerEstadistica(char *ficheroEntrada)
+Estadistica obtenerEstadistica(string ficheroEntrada)
 {
 
     // Retorna verdadero si leyó correctamente.
@@ -16,33 +16,35 @@ Estadistica obtenerEstadistica(char *ficheroEntrada)
 
         fichero >> s >> datos.q1;
         fichero >> s >> datos.q2;
-        fichero >> s >> datos.tamanoColaDeProcesos;
-        fichero >> s >> datps.tamanoColaIO;
-        fichero >> s >> datps.algoritmoDePlanificacion;
+        fichero >> s >> datos.tamColaDeProcesos;
+        fichero >> s >> datos.tamColaIO;
+        fichero >> s >> datos.algoritmoDePlanificacion;
         fichero >> s >> datos.cantidadProcesos;
-        fichero >> s >> tiempoPromedioIngresoNuevoProceso;
-        fichero >> s >> desviacionEstandarIngresoNuevoProceso;
-        fichero >> s >> porcentajeProcesosTipo1 >S> s;
+        fichero >> s >> datos.tiempoPromedioIngresoNuevoProceso;
+        fichero >> s >> datos.desviacionEstandarIngresoNuevoProceso;
+        fichero >> s >> datos.porcentajeProcesosTipo1 >> s;
 
         fichero >> s;
-        fichero >> s >> datosTipo1.tiempoPromedioProcesosP1;
-        fichero >> s >> datosTipo1.desviacionEstandarTiempoProcesosP1;
-        fichero >> s >> datosTipo1.tiempoMedioIOP1;
-        fichero >> s >> datosTipo1.desviacionEstandarTiempoIOP1;
+        fichero >> s >> datos.tiempoPromedioProcesosP1;
+        fichero >> s >> datos.desviacionEstandarTiempoProcesosP1;
+        fichero >> s >> datos.tiempoMedioIOP1;
+        fichero >> s >> datos.desviacionEstandarTiempoIOP1;
 
         fichero >> s;
-        fichero >> s >> datosTipo2.tiempoPromedioProcesosP2;
-        fichero >> s >> datosTipo2.desviacionEstandarTiempoProcesosP2;
-        fichero >> s >> datosTipo2.tiempoMedioIOP2;
-        fichero >> s >> datosTipo2.desviacionEstandarTiempoIOP2;
+        fichero >> s >> datos.tiempoPromedioProcesosP2;
+        fichero >> s >> datos.desviacionEstandarTiempoProcesosP2;
+        fichero >> s >> datos.tiempoMedioIOP2;
+        fichero >> s >> datos.desviacionEstandarTiempoIOP2;
 
         fichero.close();
 
         datos.porcentajeProcesosTipo2 = 100 - datos.porcentajeProcesosTipo1;
 
-        return datos;
-
+        datos.cantidadProcesosTipo1 = (datos.cantidadProcesos*datos.porcentajeProcesosTipo1) / 100 ;
+        datos.cantidadProcesosTipo2 = (datos.cantidadProcesos*datos.porcentajeProcesosTipo2) / 100 ;
     }
+
+    return datos;
 }
 
 int validarFichero(char *fichero)
@@ -63,7 +65,7 @@ int validarFichero(char *fichero)
 void escribirErrorBanderas()
 {
     FILE *Fichero;
-    Fichero=fopen("comunication.out","w+");
+    Fichero=fopen("error.out","w+");
 
     fprintf(Fichero,"Error banderas");
 
@@ -73,7 +75,7 @@ void escribirErrorBanderas()
 void escribirErrorParametro()
 {
     FILE *Fichero;
-    Fichero=fopen("comunication.out","w+");
+    Fichero=fopen("error.out","w+");
 
     fprintf(Fichero,"Error de parametros de entradas");
 
@@ -83,7 +85,7 @@ void escribirErrorParametro()
 void escribirErrorFichero()
 {
     FILE *Fichero;
-    Fichero=fopen("comunication.out","w+");
+    Fichero=fopen("error.out","w+");
 
     fprintf(Fichero,"Error de archivo de entrada");
 

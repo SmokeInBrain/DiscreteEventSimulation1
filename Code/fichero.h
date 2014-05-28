@@ -1,7 +1,15 @@
 #ifndef FICHERO_H_INCLUDED
 #define FICHERO_H_INCLUDED
 
-Estadistica obtenerEstadistica(char *ficheroEntrada);
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#include "estadistica.h"
+
+using namespace std;
+
+Estadistica obtenerEstadistica(string ficheroEntrada);
 int validarFichero(char *fichero);
 void escribirErrorBanderas();
 void escribirErrorParametro();

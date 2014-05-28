@@ -32,20 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="calculos.cpp" />
-		<Unit filename="calculos.h" />
-		<Unit filename="datosEstadisticos.cpp" />
-		<Unit filename="datosEstadisticos.h" />
-		<Unit filename="estadistica.h" />
-		<Unit filename="fichero.cpp" />
-		<Unit filename="fichero.h" />
-		<Unit filename="hebras.cpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="procesos.cpp" />
-		<Unit filename="procesos.h" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 			<debugger />
+			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+#include <time.h>
 #include <vector>
 
 #include "hebras.h"
@@ -56,17 +58,15 @@ int main(int argc, char **argv)
         archivoO = "estadisticasHebras.out";
     }
 
-    if(!validarEntrada(archivoI,archivoO,datoP)){
-        escribirErrorParametro();
-        return 0;
-    }
-
     if(!validarFichero(archivoI)){
         escribirErrorFichero();
         return 0;
     }
 
-    Estadistica datosEstadisticos = obtenerEstadistica(archivoI);
+    srand(time(NULL));
+
+    Estadistica datosEstadisticos;
+    datosEstadisticos = obtenerEstadistica(archivoI);
 
     hebras(archivoO, datosEstadisticos);
 

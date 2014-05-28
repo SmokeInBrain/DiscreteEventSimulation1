@@ -1,18 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-int calcularTiempoIngreso(int tiempo, int desviacion)
+#include <iostream>
+using namespace std;
+
+float calcularTiempoIngreso(float tiempo, float desviacion)
 {
-    int tiempo;
-    srand(time(NULL));
-    return tiempo = (desviacion-tiempo) + (rand()%(2*desviacion));
+    //cout<<"Tiempo: "<<tiempo<<"Desviacion: "<<desviacion<<"\n";
+    float minimo = tiempo-desviacion;
+    float maximo = tiempo+desviacion;
+
+    float random = ((float) rand()) / (float) RAND_MAX;
+    float rango = maximo - minimo;
+    float variable = random * rango;
+
+    return minimo + variable;
 }
 
 bool tipoProceso(int porcentajeTipo1)
 {
     int numero;
-    srand(time(NULL));
     numero = rand()%100;
     if(numero<=porcentajeTipo1)
     {
@@ -24,17 +31,27 @@ bool tipoProceso(int porcentajeTipo1)
     }
 }
 
-bool binario()
+void esperarProceso(float tiempo)
 {
-    int tipo;
-    srand(time(NULL));
-    tipo = rand()%2;
-    if(tipo==0)
+
+    int seg = tiempo;
+    float dec = tiempo - seg;
+
+    struct timespec tiempo1, tiempo2;
+    tiempo1.tv_sec = seg;
+    tiempo1.tv_nsec = dec * 1000 * 1000 * 1000;
+
+    while (true)
     {
-        return false;
+        if ( nanosleep(&tiempo1, &tiempo2) >= 0 )
+            break;
     }
-    else
-    {
-        return true;
-    }
+
+}
+
+float tiempoProceso()
+{
+    clock_t tclock = clock();
+    float time = tclock / (float)CLOCKS_PER_SEC;
+    return time;
 }

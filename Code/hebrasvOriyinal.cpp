@@ -16,24 +16,6 @@ vector<Procesos> procesosFinalizados;
 
 using namespace std;
 
-void ordenarSPN(Procesos proceso){
-	int posicion=0;
-	for(unsigned int i=0; i<listaProcesos.size(); i++){
-		if(listaProcesos[i].timeProcesado<proceso.timeProcesado){
-			posicion++;					
-		}else{
-			break;				
-		}			
-	}
-	
-	listaProcesos.insert(listaProcesos.begin()+posicion,proceso);
-
-	/*for(unsigned int i=0; i<listaProcesos.size(); i++){
-		cout<<listaProcesos[i].timeProcesado<<" ";
-	}
-	cout<<"\n";*/
-}
-
 //Funcion para crear procesos y luego que sean procesados por el procesador
 void *crearProcesos(void *arg)
 {
@@ -78,12 +60,7 @@ void *crearProcesos(void *arg)
 
             Procesos proceso(tipoProceso,cantidadProcesoAgregados,estadisticas);
             proceso.timeProcesado = proceso.timeIO + proceso.timeProcesador + time;
-			if(estadisticas.algoritmoDePlanificacion=="FCFS"){
-				listaProcesos.push_back(proceso);
-			}
-			if(estadisticas.algoritmoDePlanificacion=="SPN"){
-				ordenarSPN(proceso);
-			}
+            listaProcesos.push_back(proceso);
             cantidadProcesoAgregados++;
 
             if (cantidadProcesoAgregados == estadisticas.cantidadProcesos)
@@ -120,10 +97,8 @@ void *procesarProcesos(void *arg)
         {
             timeI = tiempoProceso();
             
-			//Procesos proceso = listaProcesos.back();
-            //listaProcesos.pop_back();
-			Procesos proceso = listaProcesos[0];
-            listaProcesos.erase(listaProcesos.begin());
+			Procesos proceso = listaProcesos.back();
+            listaProcesos.pop_back();
             cantidadProcesosProcesados--;
 
             pthread_mutex_unlock(&mutex);
@@ -157,12 +132,7 @@ void *procesarProcesos(void *arg)
             }
             else if (proceso.timeProcesador > 0)
             {
-                if(estadisticas.algoritmoDePlanificacion=="FCFS"){
-					listaProcesos.push_back(proceso);
-				}
-				if(estadisticas.algoritmoDePlanificacion=="SPN"){
-					ordenarSPN(proceso);
-				}
+                listaProcesos.push_back(proceso);
                 cantidadProcesosProcesados++;
                 timeF = tiempoProceso();
                 estadisticas.tiempoUtilizadoProcesador = estadisticas.tiempoUtilizadoProcesador + (timeF - timeI);
@@ -210,8 +180,8 @@ void *procesarIO1(void *arg)
         {
             timeI = tiempoProceso();
 
-            Procesos proceso = procesosIO[0];
-            procesosIO.erase(procesosIO.begin());
+            Procesos proceso = procesosIO.back();
+            procesosIO.pop_back();
             cantidadProcesosIO1--;
 
             pthread_mutex_unlock(&mutex);
@@ -231,12 +201,7 @@ void *procesarIO1(void *arg)
 
             pthread_mutex_lock(&mutex);
 
-            if(estadisticas.algoritmoDePlanificacion=="FCFS"){
-				listaProcesos.push_back(proceso);
-			}
-			if(estadisticas.algoritmoDePlanificacion=="SPN"){
-				ordenarSPN(proceso);
-			}
+            listaProcesos.push_back(proceso);
             cantidadProcesosProcesados++;
 
             timeF = tiempoProceso();
@@ -276,10 +241,8 @@ void *procesarIO2(void *arg)
         {
             timeI = tiempoProceso();
 
-            //Procesos proceso = procesosIO.back();
-            //procesosIO.pop_back();
-			Procesos proceso = procesosIO[0];
-            procesosIO.erase(procesosIO.begin());
+            Procesos proceso = procesosIO.back();
+            procesosIO.pop_back();
             cantidadProcesosIO2--;
 
             pthread_mutex_unlock(&mutex);
@@ -299,12 +262,7 @@ void *procesarIO2(void *arg)
 
             pthread_mutex_lock(&mutex);
 
-            if(estadisticas.algoritmoDePlanificacion=="FCFS"){
-				listaProcesos.push_back(proceso);
-			}
-			if(estadisticas.algoritmoDePlanificacion=="SPN"){
-				ordenarSPN(proceso);
-			}
+            listaProcesos.push_back(proceso);
             cantidadProcesosProcesados++;
 
             timeF = tiempoProceso();
@@ -398,7 +356,7 @@ float desviacionProcesos(vector<Procesos> datos, int tipo)
             contador++;
         }
 
-        else if(tipo==datos[i].tipo && tipo!=0)
+        else if(tipo==datos[i].tipo)
         {
             coef = (datos[i].timeProcesado-mediaProceso(datos,tipo));
             var = var + coef*coef;

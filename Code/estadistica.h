@@ -1,6 +1,10 @@
 #ifndef ESTADISTICA_H_INCLUDED
 #define ESTADISTICA_H_INCLUDED
 
+#include <string>
+
+using namespace std;
+
 typedef struct str_Estadistica{
     //Tipo por proceso
     float q1;
@@ -12,7 +16,7 @@ typedef struct str_Estadistica{
     int cantidadProcesos;
 
     //Tipo de algoritmo
-    bool algoritmoDePlanificacion;
+    string algoritmoDePlanificacion;
 
     //Tipo promedio por cada proceso
     float tiempoPromedioIngresoNuevoProceso;
@@ -20,7 +24,9 @@ typedef struct str_Estadistica{
 
     //Tipo de proceso
     int porcentajeProcesosTipo1;
+    int cantidadProcesosTipo1;
     int porcentajeProcesosTipo2;
+    int cantidadProcesosTipo2;
 
     //Proceso 1
     float tiempoPromedioProcesosP1;
@@ -33,6 +39,12 @@ typedef struct str_Estadistica{
     float desviacionEstandarTiempoProcesosP2;
     float tiempoMedioIOP2;
     float desviacionEstandarTiempoIOP2;
+
+    //Datos Finales
+    float tiempoTotal;
+    float tiempoUtilizadoProcesador;
+    float tiempoUtilizadoIO1;
+    float tiempoUtilizadoIO2;
 
 }Estadistica;
 

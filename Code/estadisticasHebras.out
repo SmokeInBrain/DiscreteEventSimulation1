@@ -1,0 +1,11 @@
+Tiempo promedio de término de un proceso tipo 1 desde que entra: 1.10093 s
+Tiempo promedio de término de un proceso tipo 2 desde que entra: 1.13634 s
+Tiempo promedio de término de un proceso desde que entra: 1.10801 s
+Desviación estándar de término de un proceso tipo 1 desde que entra: 0.0641745 s
+Desviación estándar de término de un proceso tipo 2 desde que entra: 0.0713536 s
+Desviación estándar de término de un proceso desde que entra: 0.0671835 s
+Tiempo promedio en sacar un proceso en un segundo: 0.8332 s
+Tiempo total: 41.66 s
+Tiempo de utilización del procesador: 11.87 s
+Tiempo de utilización del manejador de I/O 1: 37.53 s
+Tiempo de utilización del manejador de I/O 2: 3.51 s
