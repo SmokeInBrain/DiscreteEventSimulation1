@@ -14,7 +14,6 @@ private:
 	int RPInter[2]; 
 	string RIO;
 	int RIOInter[2]:
-	string nombreArchivo;
 	////VARIABLES PRIVADAS///////
 
 
@@ -22,11 +21,10 @@ private:
 	//////////CONSTRUCTORES, ACCESORES Y MUTADORES//////////////
 public:
 	//AQUÍ VA LA DECLARACIÓN DE MÉTODOS////
-    //CONSTRUCTORES
-    lecturaArchivo(int numproc, int quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, int* interarrivoInter, int* servicioInter, int* RPInter, int* RIOInter);
-    lecturaArchivo(string nombreArchivo);
-    ~lecturaArchivo();
     //GETTERS
+    lecturaArchivo(int numproc, int quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, int* interarrivoInter, int* servicioInter, int* RPInter, int* RIOInter);
+    lecturaArchivo();
+    ~lecturaArchivo();
 	int getNumProc();
 	int getQuantum();
 	string getAlgoritmo();
@@ -38,5 +36,20 @@ public:
 	int* getRPInter();
 	string getRIO();
 	int* getRIOInter();
+	///FUNCION LECTURA////
+	void lectura();
+	//SETTERS////
+	void setNumProc(int numproc);
+	void setQuantum(int quantum);
+	void setAlgoritmo(string algoritmo);
+	void setInterarrivo(string interarrivo);
+	void setInterarrivoInter(int* interarrivoInter);
+	void setServicio(string servicio);
+	void setServicioInter(int *servicioInter);
+	void setRP(string RP);
+	void setRPInter(int *RPInter);
+	void setRIO(string RIO);
+	void setRIOInter(int* RIOInter);
+
 
 };

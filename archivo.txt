@@ -1,0 +1,6 @@
+numproc 8000
+algoritmo RR 100
+interarrivo exponencial 500
+servicio exponencial 1000
+RP uniforme 1 99
+RIO constante 1
