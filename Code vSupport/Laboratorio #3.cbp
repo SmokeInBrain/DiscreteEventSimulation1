@@ -32,6 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Procesos.cpp" />
+		<Unit filename="Procesos.h" />
+		<Unit filename="calculos.cpp" />
+		<Unit filename="calculos.h" />
+		<Unit filename="estadistica.h" />
+		<Unit filename="fichero.cpp" />
+		<Unit filename="fichero.h" />
+		<Unit filename="hebras.cpp" />
+		<Unit filename="hebras.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
