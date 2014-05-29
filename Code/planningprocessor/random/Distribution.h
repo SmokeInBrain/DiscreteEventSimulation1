@@ -1,20 +1,15 @@
 #include "Random.h"
 #include <math.h>
+
 class Distribution{
 private:
-	double mu;
 	double lambda;
-	double var;
 	double a;
 	double b;
 public:
 	Distribution(double lambda);
 	Distribution(double a, double b);
-	Distribution();
-	double getMu();
-	double getVar();
-	void setVar(double var);
-	void setMu(double mu);
+	Distribution();;
 	double getLambda();
 	void setLambda(double lambda);
 	double getA();
@@ -23,5 +18,7 @@ public:
 	void setB(double b);
 	double uniform(double a, double b);
 	double normal(double mu, double var);
-	double exponential(double mu);
+	double exponential(double lambda);
 };
+
+

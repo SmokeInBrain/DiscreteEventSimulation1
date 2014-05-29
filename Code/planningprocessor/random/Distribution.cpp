@@ -37,6 +37,8 @@ void Distribution::setB(double b){
 }
 double Distribution::uniform(double a, double b){
 	Random rand = Random();
+	rand.selectStream(0);
+	rand.putSeed(1);
  	double u  = rand.calcRandom();
 	double result = a+((b-a)*u);
 	return result;
@@ -48,7 +50,10 @@ double Distribution::normal(double mu, double desv){
   	const double p3 = 0.204231210245e-1;  const double q3 = 0.103537752850;
   	const double p4 = 0.453642210148e-4;  const double q4 = 0.385607006340e-2;
   	double u, t, p, q, z;
+  	long x;
   	Random rand = Random();
+  	rand.selectStream(0);
+	rand.putSeed(1);
  	u = rand.calcRandom();
   	if (u < 0.5)
     	t = sqrt(-2.0 * log(u));
@@ -67,7 +72,10 @@ double Distribution::normal(double mu, double desv){
 
 double Distribution::exponential(double lambda){
 	Random rand = Random();
+	rand.selectStream(0);
+	rand.putSeed(1);
  	double u = rand.calcRandom();
 	double result = -lambda*log(1.0-u);
 	return result; 
 }
+
