@@ -5,7 +5,7 @@ using namespace std;
 void main()
 {
     //GetOpt
-    Processing processing = new Processing();
+    Processing processing();
     if(processing.planificationProcess()){
         cout<<"True";
     }else{

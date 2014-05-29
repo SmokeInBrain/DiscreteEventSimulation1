@@ -1,51 +1,37 @@
 #include <processing/Processing.h>
 
-Processing::Processing(StadisticIn stdIn){
-    mutex = PTHREAD_MUTEX_INITIALIZER;
+Processing::Processing(StadisticsIn stdIn){
+    //Initialize Statistics
     this->stdIn = stdIn;
     stdOut();
+
+    //Initialize list of process in each activity
+    processListCPU();
+    processListIO();
+    processFinishList();
+
+    //Initialize list
 }
 
-void Processing::*functionCreateProcess(void * arg)
+void Processing::functionCreateProcess()
 {
     CreateProcess createProcess();
     createProcess.creatingProcess();
-    //procesador.procesar(mutex, colaProcesos, colaIO, colaTerminados, procesosTerminados, estadisticas);
-    pthread_exit(NULL);
 }
 
-void Processing::*functionProcessingProcess(void * arg)
+void Processing::functionProcessingProcess()
 {
     ProcessingProcess processingProcess();
     processingProcess.ProcesprocessingCPU();
-    pthread_exit(NULL);
 }
 
-void Processing::*functionProcessingIO(void * arg)
+void Processing::functionProcessingIO()
 {
     ProcessingIO procesingIO();
     procesingIO.executeIO();
-    pthread_exit(NULL);
 }
 
-bool Processing::planificationProcess()
+bool Processing::planificationProcess(StadisticsIn stdIn)
 {
 
-    float timeInitial = getTime();
-
-    pthread_t createProcessThread, processingProcessThread, processingIOThread;                          //Declaration thread
-
-    pthread_create(&createProcessThread, NULL, functionCreateProcess, NULL);                             //Create thread that create process
-    pthread_create(&processingProcessThread, NULL, functionProcessingProcess, NULL);                     //Create thread that processing process
-    pthread_create(&processingIOThread, NULL, functionProcessingIOThread, NULL);                         //Create thread that processing IO
-
-    pthread_join(createProcessThread, NULL);
-    pthread_join(processingProcessThread, NULL);
-    pthread_join(processingIOThread, NULL);
-
-    float timeFinal = getTime();
-
-    estadisticas.tiempoTotal = timeF - timeI;
-
-    imprimirEstadisticas(ficheroSalida);
 }

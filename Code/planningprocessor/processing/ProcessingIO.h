@@ -9,7 +9,7 @@ class ProcessingIO{
         //Attributes
 
         //Methods
-            void executeIO();
+            void executeIO(pthread_mutex_t mutex);
 
 };
 

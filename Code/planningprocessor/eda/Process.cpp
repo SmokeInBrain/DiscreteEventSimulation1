@@ -11,4 +11,6 @@ Process::Process(int id)
     timeIO = 0;
 }
 
+float Process::calculateProcessor(){
 
+}

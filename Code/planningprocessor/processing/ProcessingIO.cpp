@@ -3,7 +3,7 @@
 ProcessingIO::ProcessingIO(){}
 
 //Funcion para poder procesar los procesos en el IO de tipo 2
-void ProcessingIO::executeIO()
+void ProcessingIO::executeIO(pthread_mutex_t mutex)
 {
     float timeIT, timeFT, timeI, timeF, timeIO;
 

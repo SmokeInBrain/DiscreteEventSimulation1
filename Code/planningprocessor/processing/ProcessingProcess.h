@@ -9,7 +9,7 @@ class ProcessingProcess{
         //Attributes
 
         //Methods
-            void processingCPU();
+            void processingCPU(pthread_mutex_t mutex);
 
 };
 

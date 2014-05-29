@@ -3,7 +3,7 @@
 ProcessingProcess::ProcessingProcess(){}
 
 //Funcion para poder procesar los procesos en el procesador
-void ProcessingProcess::ProcesprocessingCPU()
+void ProcessingProcess::ProcesprocessingCPU(pthread_mutex_t mutex)
 {
     float timeIT, timeFT, timeI, timeF, timeP;
 

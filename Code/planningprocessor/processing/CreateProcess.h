@@ -9,7 +9,7 @@ class CreateProcess{
         //Attributes
 
         //Methods
-            void creatingProcess();
+            void creatingProcess(pthread_mutex_t mutex);
 
 };
 

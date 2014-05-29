@@ -6,19 +6,24 @@
 class Processing{
     public:
         //Constructor
-            Processing(StadisticIn stdIn);
+            Processing(StadisticsIn stdIn);
 
         //Attributes
             //Date global
-            pthread_mutex_t mutex;
-            StadisticIn stdIn;
-            StadisticOut stdout;
+            StadisticsIn stdIn;
+            StadisticsOut stdout;
+
+            Process processListCPU;
+            VectorProcess processListIO;
+            VectorProcess processFinishList;
+
+            VectorEvent eventList;
 
         //Methods
-            void *functionCreateProcess(void * arg);
-            void *functionProcessingProcess(void * arg);
-            void *functionProcessingIO(void * arg);
-            bool planificationProcess(StadisticIn stdIn);
+            void functionCreateProcess();
+            void functionProcessingProcess();
+            void functionProcessingIO();
+            bool planificationProcess(StadisticsIn stdIn);
 
 };
 

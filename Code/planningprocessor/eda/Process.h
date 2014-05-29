@@ -17,7 +17,7 @@ class Process
             float timeIO;           //Time that this process is in the IO
 
         //Methods
-
+            float calculateProcessor();
 };
 
 #endif // PROCESOS_H

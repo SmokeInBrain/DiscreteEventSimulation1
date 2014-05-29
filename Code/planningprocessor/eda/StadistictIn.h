@@ -1,15 +1,15 @@
-#ifndef STADISTICIN_H_INCLUDED
-#define STADISTICIN_H_INCLUDED
+#ifndef STADISTICSIN_H_INCLUDED
+#define STADISTICSIN_H_INCLUDED
 
 #include <string>
 
 using namespace std;
 
-class StadisticIn
+class StadisticsIn
 {
     public:
         //Constructor
-            StadisticIn();
+            StadisticsIn();
 
         //Atribute
             //Date general

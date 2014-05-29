@@ -1,7 +1,9 @@
 #include <processing/CreateProcess.h>
 
+CreateProcess::CreateProcess(){}
+
 //Funcion para crear procesos y luego que sean procesados por el procesador
-void CreateProcess::creatingProcess()
+void CreateProcess::creatingProcess(pthread_mutex_t mutex)
 {
     float timeI, timeF, time;
 

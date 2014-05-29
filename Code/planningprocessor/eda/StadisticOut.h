@@ -1,11 +1,11 @@
-#ifndef STADISTICOUT_H_INCLUDED
-#define STADISTICOUT_H_INCLUDED
+#ifndef STADISTICSOUT_H_INCLUDED
+#define STADISTICSOUT_H_INCLUDED
 
-class StadisticOut
+class StadisticsOut
 {
     public:
         //Constructor
-            StadisticOut();
+            StadisticsOut();
 
         //Atribute
             //Date general
@@ -21,6 +21,9 @@ class StadisticOut
             //Date queue
             int maxLenghtQueue;
             float avgLenghtQueue;
+
+        //Methods
+
 };
 
-#endif // STADISTICOUT_H_INCLUDED
+#endif // STADISTICSOUT_H_INCLUDED
