@@ -1,16 +1,16 @@
 #include <string>
 using namespace std;
-class Datos
+class Data
 {
 private:
 	//VARIABLES PRIVADAS
 	int numproc;
 	double quantum;
-	string algoritmo;
-	string interarrivo;
-	double interarrivoInter[2];
-	string servicio;
-	double servicioInter[2];
+	string algorithm;
+	string interarrive;
+	double interarriveInter[2];
+	string service;
+	double serviceInter[2];
 	string RP;
 	double RPInter[2]; 
 	string RIO;
@@ -25,15 +25,14 @@ public:
     //CONSTRUCTORES
     Datos(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
     Datos();
-    ~Datos();
     //GETTERS
 	int getNumProc();
 	double getQuantum();
-	string getAlgoritmo();
-	string getInterarrivo();
-	double* getInterarrivoInter();
-	string getServicio();
-	double* getServicioInter();
+	string getAlgorithm();
+	string getInterarrive();
+	double* getInterarriveInter();
+	string getService();
+	double* getServiceInter();
 	string getRP();
 	double* getRPInter();
 	string getRIO();
@@ -41,15 +40,14 @@ public:
 	//SETTERS
 	void setNumProc(int numproc);
 	void setQuantum(double quantum);
-	void setAlgoritmo(string algoritmo);
-	void setInterarrivo(string interarrivo);
-	void setInterarrivoInter(double interarrivo1, double interarrivo2);
-	void setServicio(string servicio);
-	void setServicioInter(double servicio1, double servicio2);
+	void setAlgorithm(string algoritmo);
+	void setInterarrive(string interarrivo);
+	void setInterarriveInter(double interarrivo1, double interarrivo2);
+	void setService(string servicio);
+	void setServiceInter(double servicio1, double servicio2);
 	void setRP(string RP);
 	void setRPInter(double RP1, double RP2);
 	void setRIO(string RIO);
 	void setRIOInter(double RIOInter1, double RIOInter2);
-	void setNombreArchivo(string nombreArchivo);
 };
 
