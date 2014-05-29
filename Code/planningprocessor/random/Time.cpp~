@@ -1,8 +1,0 @@
-#include <random/Time.h>
-
-float tiempoProceso()
-{
-    clock_t tclock = clock();
-    float time = tclock / (float)CLOCKS_PER_SEC;
-    return time;
-}
