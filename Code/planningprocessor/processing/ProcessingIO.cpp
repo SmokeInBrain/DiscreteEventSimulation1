@@ -1,9 +1,9 @@
 #include <processing/ProcessingIO.h>
 
-ProcessingProcess::ProcessingProcess(){}
+ProcessingIO::ProcessingIO(){}
 
 //Funcion para poder procesar los procesos en el IO de tipo 2
-void executeIO()
+void ProcessingIO::executeIO()
 {
     float timeIT, timeFT, timeI, timeF, timeIO;
 

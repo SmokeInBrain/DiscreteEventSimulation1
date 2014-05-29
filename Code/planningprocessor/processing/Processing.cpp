@@ -16,12 +16,16 @@ void Processing::*functionCreateProcess(void * arg)
 
 void Processing::*functionProcessingProcess(void * arg)
 {
-    ProcessingProcess
+    ProcessingProcess processingProcess();
+    processingProcess.ProcesprocessingCPU();
+    pthread_exit(NULL);
 }
 
 void Processing::*functionProcessingIO(void * arg)
 {
-
+    ProcessingIO procesingIO();
+    procesingIO.executeIO();
+    pthread_exit(NULL);
 }
 
 bool Processing::planificationProcess()

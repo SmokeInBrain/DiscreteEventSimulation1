@@ -1,10 +1,10 @@
 #ifndef PROCESSINGIO_H
 #define PROCESSINGIO_H
 
-class ProcessingProcess{
+class ProcessingIO{
     public:
         //Constructor
-            ProcessingProcess();
+            ProcessingIO();
 
         //Attributes
 

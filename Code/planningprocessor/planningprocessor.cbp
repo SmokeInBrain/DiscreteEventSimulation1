@@ -34,12 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="class/Process.cpp" />
-		<Unit filename="class/Process.h" />
-		<Unit filename="class/StadisticIn.cpp" />
-		<Unit filename="class/StadisticOut.cpp" />
-		<Unit filename="class/StadisticOut.h" />
-		<Unit filename="class/StadistictIn.h" />
+		<Unit filename="eda/Process.cpp" />
+		<Unit filename="eda/Process.h" />
+		<Unit filename="eda/StadisticIn.cpp" />
+		<Unit filename="eda/StadisticOut.cpp" />
+		<Unit filename="eda/StadisticOut.h" />
+		<Unit filename="eda/StadistictIn.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="processing/CreateProcess.cpp" />
 		<Unit filename="processing/CreateProcess.h" />
