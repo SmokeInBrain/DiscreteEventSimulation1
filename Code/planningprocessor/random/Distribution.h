@@ -2,23 +2,26 @@
 #include <math.h>
 class Distribution{
 private:
-	Random randomNumber;
 	double mu;
+	double lambda;
+	double var;
 	double a;
 	double b;
 public:
-	Distribution(Random randomNumber, double mu);
-	Distribution(Random randomNumber, double a, double b);
+	Distribution(double lambda);
+	Distribution(double a, double b);
 	Distribution();
-	Random getRandomNumber();
-	void setRandomNumber(Random randomNumber);
 	double getMu();
+	double getVar();
+	void setVar(double var);
 	void setMu(double mu);
+	double getLambda();
+	void setLambda(double lambda);
 	double getA();
 	double getB();
 	void setA(double a);
 	void setB(double b);
 	double uniform(double a, double b);
-	double normal();
+	double normal(double mu, double var);
 	double exponential(double mu);
 };
