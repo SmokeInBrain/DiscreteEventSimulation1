@@ -23,8 +23,8 @@ private:
 public:
 	//AQUÍ VA LA DECLARACIÓN DE MÉTODOS////
     //CONSTRUCTORES
-    Datos(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
-    Datos();
+    Data(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
+    Data();
     //GETTERS
 	int getNumProc();
 	double getQuantum();

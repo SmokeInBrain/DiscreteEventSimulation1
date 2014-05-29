@@ -16,27 +16,27 @@ File::File() {
 	this->name="";
 }
 //GETTERS
-Data File::getDato(){
+Data File::getData(){
 	return this->data;
 }
 
-string File::getname(){
+string File::getName(){
 	return this->name;
 }
 
 
 //SETTERS
 
-void File::setDato(Data data){
+void File::setData(Data data){
 	this->data=data;
 }
 
-void File::setname(string name){
+void File::setName(string name){
 	this->name=name;
 }
 
 //METODOS
-void File::lectura(){
+void File::read(){
 	string fileName= this->name;
 	int numproc=0;
 	double quantum=0.0;
@@ -56,7 +56,7 @@ void File::lectura(){
 	string s;
 	string garbage="";
 	ifstream inputFile;
-	inputFile.open(nameFile.c_str());
+	inputFile.open(fileName.c_str());
 	if(inputFile.is_open()){
 		
 		inputFile >> s >> garbage;

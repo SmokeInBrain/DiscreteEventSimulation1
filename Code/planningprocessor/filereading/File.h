@@ -11,7 +11,7 @@ public:
 	File(Data data, string name);
 	File();
 	//GETTERS
-	Datos getData();
+	Data getData();
 	string getName();
 	//SETTERS
 	void setData(Data data);
