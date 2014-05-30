@@ -12,11 +12,11 @@ Distribution::Distribution(){
 	p=NULL;
 }
 
-Distribution::getRandom(){
+Random Distribution::getRandom(){
   return this->random;
 }
 
-Distribution::setRandom(Random random){
+void Distribution::setRandom(Random random){
   this->random = random;
 }
 
