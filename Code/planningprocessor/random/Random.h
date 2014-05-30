@@ -4,7 +4,7 @@
 #define STREAMS    256        
 #define A256       22925      
 #define DEFAULT    123456789
-#include <time.h>
+#include <ctime>
 
 class Random{
 private:

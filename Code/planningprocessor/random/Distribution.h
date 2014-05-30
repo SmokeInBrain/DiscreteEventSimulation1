@@ -3,12 +3,9 @@
 
 class Distribution{
 private:
-	double lambda;
-	double a;
-	double b;
+	Random random;
 public:
-	Distribution(double lambda);
-	Distribution(double a, double b);
+	Distribution(Random random);
 	Distribution();;
 	double getLambda();
 	void setLambda(double lambda);
@@ -17,7 +14,7 @@ public:
 	void setA(double a);
 	void setB(double b);
 	double uniform(double a, double b);
-	double normal(double mu, double var);
+	double normal(double mu, double desv);
 	double exponential(double lambda);
 };
 

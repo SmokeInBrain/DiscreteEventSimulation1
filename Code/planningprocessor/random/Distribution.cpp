@@ -1,45 +1,19 @@
 #include <stdlib.h>
 #include "Distribution.h"
 
-Distribution::Distribution(double lambda){
-	this->lambda=lambda;
+Distribution::Distribution(Random random){
+	this->random = random;
+	random.plantSeeds(1);
 }
 
-Distribution::Distribution(double a, double b){
-	this->a=a;
-	this->b=b;
-}
 
 Distribution::Distribution(){
-	this->lambda=0.0;
-	this->a=0.0;
-	this->b=0.0;
+	Random *p = &this->random;
+	p=NULL;
 }
 
-double Distribution::getLambda(){
-	return this->lambda;
-}
-void Distribution::setLambda(double lambda){
-	this->lambda=lambda;
-}
-
-double Distribution::getA(){
-	return this->a;
-}
-double Distribution::getB(){
-	return this->b;
-}
-void Distribution::setA(double a){
-	this->a=a;
-}
-void Distribution::setB(double b){
-	this->b=b;
-}
 double Distribution::uniform(double a, double b){
-	Random rand = Random();
-	rand.selectStream(0);
-	rand.putSeed(1);
- 	double u  = rand.calcRandom();
+ 	double u  = this->random.calcRandom();
 	double result = a+((b-a)*u);
 	return result;
 }
@@ -51,10 +25,7 @@ double Distribution::normal(double mu, double desv){
   	const double p4 = 0.453642210148e-4;  const double q4 = 0.385607006340e-2;
   	double u, t, p, q, z;
   	long x;
-  	Random rand = Random();
-  	rand.selectStream(0);
-	rand.putSeed(1);
- 	u = rand.calcRandom();
+ 	u  = this->random.calcRandom();
   	if (u < 0.5)
     	t = sqrt(-2.0 * log(u));
   	else
@@ -71,10 +42,7 @@ double Distribution::normal(double mu, double desv){
 
 
 double Distribution::exponential(double lambda){
-	Random rand = Random();
-	rand.selectStream(0);
-	rand.putSeed(1);
- 	double u = rand.calcRandom();
+ 	double u  = this->random.calcRandom();
 	double result = -lambda*log(1.0-u);
 	return result; 
 }

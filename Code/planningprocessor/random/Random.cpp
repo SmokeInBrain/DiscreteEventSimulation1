@@ -44,7 +44,10 @@ void Random::plantSeeds(long x){
 
 void Random::putSeed(long x){
 	char ok = 0;
-   	x = x % MODULUS;                       
+  	if (x > 0)
+    	x = x % MODULUS;                       /* correct if x is too large  */
+  	if (x < 0)                                 
+    	x = ((unsigned long) time((time_t *) NULL)) % MODULUS;              
   	seed[stream] = x;
 }
 
