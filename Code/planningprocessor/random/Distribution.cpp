@@ -12,6 +12,14 @@ Distribution::Distribution(){
 	p=NULL;
 }
 
+Distribution::getRandom(){
+  return this->random;
+}
+
+Distribution::setRandom(Random random){
+  this->random = random;
+}
+
 double Distribution::uniform(double a, double b){
  	double u  = this->random.calcRandom();
 	double result = a+((b-a)*u);
