@@ -1,9 +1,10 @@
-#include <eda/StadisticOut.h>
+#include <eda/StadisticsOut.h>
 
-StadisticOut::StadisticOut()
+StadisticsOut::StadisticsOut()
 {
     //Date
     timeTotalSimulation = 0;
+
     timeUtilizationProcessor = 0;
     timeIdleProcessor = 0;
 

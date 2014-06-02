@@ -1,6 +1,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+#include <StadisticsIn.h>
 #include <string>
 
 using namespace std;
@@ -9,21 +10,15 @@ class Event
 {
     public:
         //Constructor
-            Event(string typeEvent);
+            Event(string typeEvent, int idProcess, StadisticsIn stdIn, int clock);
 
         //Attributes
-            //Date
-            int id;
+            string typeEvent;
+            int time;
             int idProcess;
-            //Stadistic
-            float timeArrival;
-            float timeDelay;
-
-            bool actionEvent;
-            bool stateEvent;
 
         //Methods
-            bool finishEvent();
+            //bool finishEvent();
 };
 
 #endif // EVENT_H

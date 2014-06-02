@@ -1,13 +1,13 @@
-#include "Random.h"
+#include <random/Random.h>
 #include <stdio.h>
 
 long Random::seed[STREAMS]={DEFAULT};
 int Random::initialized =0;
 int Random::stream = 0;
 
- 
+
 Random::Random(){
-	
+
 }
 
 double Random::calcRandom(void){
@@ -16,9 +16,9 @@ double Random::calcRandom(void){
     long t;
 
   	t = MULTIPLIER * (seed[stream] % Q) - R * (seed[stream] / Q);
-  	if (t > 0) 
+  	if (t > 0)
     	seed[stream] = t;
-  	else 
+  	else
     	seed[stream] = t + MODULUS;
   	return ((double) seed[stream] / MODULUS);
 }
@@ -46,8 +46,8 @@ void Random::putSeed(long x){
 	char ok = 0;
   	if (x > 0)
     	x = x % MODULUS;                       /* correct if x is too large  */
-  	if (x < 0)                                 
-    	x = ((unsigned long) time((time_t *) NULL)) % MODULUS;              
+  	if (x < 0)
+    	x = ((unsigned long) time((time_t *) NULL)) % MODULUS;
   	seed[stream] = x;
 }
 
@@ -57,8 +57,8 @@ void Random::getSeed(long *x){
 
 void Random::selectStream(int index){
   stream = ((unsigned int) index) % STREAMS;
-  if ((initialized == 0) && (stream != 0))   
-    plantSeeds(DEFAULT);                     
+  if ((initialized == 0) && (stream != 0))
+    plantSeeds(DEFAULT);
 }
 
 

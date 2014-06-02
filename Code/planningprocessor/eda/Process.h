@@ -5,20 +5,21 @@ class Process
 {
     public:
         //Constructor
-            Process(int id);
+            Process();
+            Process(int id, double quantum, int clock)
 
         //Attributes
             //Date
             int id;
-            //Stadistic
+            int clock;
+            //Statistics
             float timeProcessor;    //Time that need this process for finish
-            float timeQueue;        //Time that this process is in the queue
             float timeProcessing;   //Time that this process is in the CPU
-            float timeIO;           //Time that this process is in the IO
+            double quantum;           //Time quantum in algorithm RR
 
         //Methods
             float calculateProcessor();
 };
 
-#endif // PROCESOS_H
+#endif // PROCESS_H
 

@@ -1,6 +1,6 @@
 #include <string>
 using namespace std;
-class Data
+class StadisticsIn
 {
 private:
 	//VARIABLES PRIVADAS
@@ -23,8 +23,8 @@ private:
 public:
 	//AQUÍ VA LA DECLARACIÓN DE MÉTODOS////
     //CONSTRUCTORES
-    Data(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
-    Data();
+    StadisticsIn(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
+    StadisticsIn();
     //GETTERS
 	int getNumProc();
 	double getQuantum();

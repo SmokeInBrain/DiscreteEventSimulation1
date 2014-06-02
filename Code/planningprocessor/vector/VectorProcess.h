@@ -20,6 +20,7 @@ class VectorProcess {
         // Methods.
             void insertProcess(Process process);
             Process extractProcess();
+            Process extractProcessIO(int id);
             void printAllList();
 };
 

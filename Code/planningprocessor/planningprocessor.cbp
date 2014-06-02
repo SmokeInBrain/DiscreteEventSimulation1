@@ -34,27 +34,27 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="eda/Event.cpp" />
+		<Unit filename="eda/Event.h" />
 		<Unit filename="eda/Process.cpp" />
 		<Unit filename="eda/Process.h" />
-		<Unit filename="eda/StadisticIn.cpp" />
-		<Unit filename="eda/StadisticOut.cpp" />
-		<Unit filename="eda/StadisticOut.h" />
-		<Unit filename="eda/StadistictIn.h" />
+		<Unit filename="eda/StadisticsIn.cpp" />
+		<Unit filename="eda/StadisticsIn.h" />
+		<Unit filename="eda/StadisticsOut.cpp" />
+		<Unit filename="eda/StadisticsOut.h" />
+		<Unit filename="filereading/File.cpp" />
+		<Unit filename="filereading/File.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="processing/CreateProcess.cpp" />
-		<Unit filename="processing/CreateProcess.h" />
 		<Unit filename="processing/Processing.cpp" />
 		<Unit filename="processing/Processing.h" />
-		<Unit filename="processing/ProcessingIO.cpp" />
-		<Unit filename="processing/ProcessingIO.h" />
-		<Unit filename="processing/ProcessingProcess.cpp" />
-		<Unit filename="processing/ProcessingProcess.h" />
 		<Unit filename="random/Distribution.cpp" />
 		<Unit filename="random/Distribution.h" />
 		<Unit filename="random/Random.cpp" />
 		<Unit filename="random/Random.h" />
-		<Unit filename="random/Time.cpp" />
-		<Unit filename="random/Time.h" />
+		<Unit filename="vector/VectorEvent.cpp" />
+		<Unit filename="vector/VectorEvent.h" />
+		<Unit filename="vector/VectorProcess.cpp" />
+		<Unit filename="vector/VectorProcess.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -14,9 +14,10 @@ class VectorEvent {
 
         // Attributes.
             vector <Event> FEL;
+            int numEventArrival;
 
         // Methods.
-            void insertEvent(Event event);
+            void insertEvent(Event event)
             Event extractEvent();
             void printAllList();
 };

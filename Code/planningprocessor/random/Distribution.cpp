@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "Distribution.h"
+#include <random/Distribution.h>
 
 Distribution::Distribution(Random random){
 	this->random = random;
@@ -52,6 +52,6 @@ double Distribution::normal(double mu, double desv){
 double Distribution::exponential(double lambda){
  	double u  = this->random.calcRandom();
 	double result = -lambda*log(1.0-u);
-	return result; 
+	return result;
 }
 
