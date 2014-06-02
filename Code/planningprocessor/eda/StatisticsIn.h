@@ -1,6 +1,9 @@
+#ifndef STATISTICSIN_H_INCLUDED
+#define STATISTICSIN_H_INCLUDED
+
 #include <string>
 using namespace std;
-class StadisticsIn
+class StatisticsIn
 {
 private:
 	//VARIABLES PRIVADAS
@@ -12,7 +15,7 @@ private:
 	string service;
 	double serviceInter[2];
 	string RP;
-	double RPInter[2]; 
+	double RPInter[2];
 	string RIO;
 	double RIOInter[2];
 	////VARIABLES PRIVADAS///////
@@ -23,8 +26,8 @@ private:
 public:
 	//AQUÍ VA LA DECLARACIÓN DE MÉTODOS////
     //CONSTRUCTORES
-    StadisticsIn(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
-    StadisticsIn();
+    StatisticsIn(int numproc, double quantum, string algoritmo, string interarrivo, string servicio, string RP, string RIO, double interarrivoInter1, double interarrivoInter2, double servicioInter1, double servicioInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2);
+    StatisticsIn();
     //GETTERS
 	int getNumProc();
 	double getQuantum();
@@ -51,3 +54,4 @@ public:
 	void setRIOInter(double RIOInter1, double RIOInter2);
 };
 
+#endif // STATISTICSIN_H_INCLUDED

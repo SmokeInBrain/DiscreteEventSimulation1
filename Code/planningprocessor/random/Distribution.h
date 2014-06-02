@@ -1,3 +1,6 @@
+#ifndef DISTRIBUTION_H_INCLUDED
+#define DISTRIBUTION_H_INCLUDED
+
 #include "Random.h"
 #include <math.h>
 
@@ -14,4 +17,5 @@ public:
 	double exponential(double lambda);
 };
 
+#endif // DISTRIBUTION_H_INCLUDED
 

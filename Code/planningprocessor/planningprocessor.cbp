@@ -38,10 +38,10 @@
 		<Unit filename="eda/Event.h" />
 		<Unit filename="eda/Process.cpp" />
 		<Unit filename="eda/Process.h" />
-		<Unit filename="eda/StadisticsIn.cpp" />
-		<Unit filename="eda/StadisticsIn.h" />
-		<Unit filename="eda/StadisticsOut.cpp" />
-		<Unit filename="eda/StadisticsOut.h" />
+		<Unit filename="eda/StatisticsIn.cpp" />
+		<Unit filename="eda/StatisticsIn.h" />
+		<Unit filename="eda/StatisticsOut.cpp" />
+		<Unit filename="eda/StatisticsOut.h" />
 		<Unit filename="filereading/File.cpp" />
 		<Unit filename="filereading/File.h" />
 		<Unit filename="main.cpp" />

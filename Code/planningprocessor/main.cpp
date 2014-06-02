@@ -2,13 +2,19 @@
 
 using namespace std;
 
-void main()
+int main(int argc, char * argv[])
 {
-    //GetOpt
+    File file = File();
+    file.getOptions(argc, argv[]);
+
+    /*
     Processing processing();
     if(processing.planificationProcess()){
         cout<<"True";
     }else{
         cout<<"False";
     }
+    */
+
+    return EXIT_SUCCESS;
 }

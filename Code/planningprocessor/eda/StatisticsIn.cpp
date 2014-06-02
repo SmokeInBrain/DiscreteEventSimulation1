@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <string>
-#include <eda/StadisticsIn.h>
+#include <eda/StatisticsIn.h>
 using namespace std;
 
 //CONSTRUCTORES
 
-StadisticsIn::StadisticsIn() {
+StatisticsIn::StatisticsIn() {
 	this->numproc=0;
 	this->quantum=0.0;h
 	this->algorithm = "";
@@ -23,7 +23,7 @@ StadisticsIn::StadisticsIn() {
 	this->RIOInter[1]=0.0;
 }
 
-StadisticsIn::StadisticsIn(int numproc, double quantum, string algorithm, string interarrive, string service, string RP, string RIO, double interarriveInter1, double interarriveInter2, double serviceInter1, double serviceInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2){
+StatisticsIn::StatisticsIn(int numproc, double quantum, string algorithm, string interarrive, string service, string RP, string RIO, double interarriveInter1, double interarriveInter2, double serviceInter1, double serviceInter2, double RPInter1, double RPInter2, double RIOInter1, double RIOInter2){
 	this->numproc=numproc;
 	this->quantum=quantum;
 	this->algorithm = algorithm;
@@ -41,97 +41,97 @@ StadisticsIn::StadisticsIn(int numproc, double quantum, string algorithm, string
 	this->RIOInter[1]=RIOInter2;
 }
 //GETTERS
-int StadisticsIn::getNumProc(){
+int StatisticsIn::getNumProc(){
 	return this->numproc;
 }
 
-string StadisticsIn::getAlgorithm(){
+string StatisticsIn::getAlgorithm(){
 	return this->algorithm;
 }
 
-double StadisticsIn::getQuantum(){
+double StatisticsIn::getQuantum(){
 	return this->quantum;
 }
 
-string StadisticsIn::getInterarrive(){
+string StatisticsIn::getInterarrive(){
 	return this->interarrive;
 }
 
-double* StadisticsIn::getInterarriveInter(){
+double* StatisticsIn::getInterarriveInter(){
 	return this->interarriveInter;
 }
 
-string StadisticsIn::getService(){
+string StatisticsIn::getService(){
 	return this->service;
 }
 
-double* StadisticsIn::getServiceInter(){
+double* StatisticsIn::getServiceInter(){
 	return this->serviceInter;
 }
 
-string StadisticsIn::getRP(){
+string StatisticsIn::getRP(){
 	return this->RP;
 }
 
-double* StadisticsIn::getRPInter(){
+double* StatisticsIn::getRPInter(){
 	return this->RPInter;
 }
 
-string StadisticsIn::getRIO(){
+string StatisticsIn::getRIO(){
 	return this->RIO;
 }
 
-double* StadisticsIn::getRIOInter(){
+double* StatisticsIn::getRIOInter(){
 	return this->RIOInter;
 }
 
 
 //SETTERS
 
-void StadisticsIn::setNumProc(int numproc){
+void StatisticsIn::setNumProc(int numproc){
 	this->numproc=numproc;
 }
 
-void StadisticsIn::setAlgorithm(string algorithm){
+void StatisticsIn::setAlgorithm(string algorithm){
 	this->algorithm=algorithm;
 }
 
-void StadisticsIn::setQuantum(double quantum){
+void StatisticsIn::setQuantum(double quantum){
 	this->quantum=quantum;
 }
 
-void StadisticsIn::setInterarrive(string interarrive){
+void StatisticsIn::setInterarrive(string interarrive){
 	this->interarrive=interarrive;
 }
 
-void StadisticsIn::setInterarriveInter(double interarrive1, double interarrive2){
+void StatisticsIn::setInterarriveInter(double interarrive1, double interarrive2){
 	this->interarriveInter[0]=interarrive1;
 	this->interarriveInter[1]=interarrive2;
 }
 
-void StadisticsIn::setService(string service){
+void StatisticsIn::setService(string service){
 	this->service=service;
 }
 
-void StadisticsIn::setServiceInter(double service1,double service2){
+void StatisticsIn::setServiceInter(double service1,double service2){
 	this->serviceInter[0]=service1;
 	this->serviceInter[1]=service2;
 }
 
-void StadisticsIn::setRP(string RP){
+void StatisticsIn::setRP(string RP){
 	this->RP=RP;
 }
 
-void StadisticsIn::setRPInter(double RP1, double RP2){
+void StatisticsIn::setRPInter(double RP1, double RP2){
 	this->RPInter[0]=RP1;
 	this->RPInter[1]=RP2;
 }
 
-void StadisticsIn::setRIO(string RIO){
+void StatisticsIn::setRIO(string RIO){
 	this->RIO=RIO;
 }
 
-void StadisticsIn::setRIOInter(double RIO1, double RIO2){
+void StatisticsIn::setRIOInter(double RIO1, double RIO2){
 	this->RIOInter[0]=RIO1;
 	this->RIOInter[1]=RIO2;
 }

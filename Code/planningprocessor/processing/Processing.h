@@ -1,18 +1,18 @@
 #ifndef PROCESSING_H
 #define PROCESSING_H
 
-#include <eda/StadisticsIn.h>
+#include <eda/StatisticsIn.h>
 #include <vector/VectorProcess.h>
 #include <vector/VectorEvent.h>
 
 class Processing{
     public:
         //Constructor
-            Processing(StadisticsIn stdIn);
+            Processing(StatisticsIn stdIn);
 
         //Attributes
             //Date global
-            StadisticsIn stdIn;
+            StatisticsIn stdIn;
 
             int clock;
 
@@ -42,7 +42,7 @@ class Processing{
             int activityArrivalProcess();
             int activityProcessCPU();
             int activityProcessIO();
-            bool planificationProcess(StadisticsIn stdIn);
+            bool planificationProcess(StatisticsIn stdIn);
 
 };
 

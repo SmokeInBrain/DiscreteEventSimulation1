@@ -1,6 +1,6 @@
 #include <processing/Processing.h>
 
-Processing::Processing(StadisticsIn stdIn)
+Processing::Processing(StatisticsIn stdIn)
 {
     //Initialize Statistics
     this->stdIn = stdIn;
@@ -48,20 +48,23 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
 {
     if(condProcessCPU)
     {
-        largeAccumulatedQueue++;                    //Increment queue
-        processQueue.insertProcess(processArrival); //Insert process in queue
+        largeQueue++;                                                           //Increment queue
+        processQueue.insertProcess(processArrival);                             //Insert process in queue
     }
     else
     {
         condProcessCPU = true;                                                 //Setting process CPU
         processCPU = processArrival;
-        Event nextRP = Event("RP", eventCurrent.idProcess, stdIn, clock);      //Create next RP in the system
+        Event nextRP = Event("RP", eventCurrent.idProcess, stdIn, eventCurrent.time);      //Create next RP in the system
         eventList.insertEvent(nextRP);                                         //Insert event RP in FEL
     }
 
     //Generate next arrival
-    Event nextArrival = Event("Arrival", eventList.numEventArrival, stdIn, clock);   //Create next arrival
-    eventList.insertEvent(nextArrival);     //And insert in the FEL
+    if(eventList.numEventArrival < stdIn.getNumProc)                        //Condition: The system can't generate more arrival for maximum case of process arrival
+    {
+        Event nextArrival = Event("Arrival", eventList.numEventArrival, stdIn, clock);   //Create next arrival
+        eventList.insertEvent(nextArrival);     //And insert in the FEL
+    }
 
     //Statistics
     if(maxLargeQueue < largeQueue)
@@ -87,7 +90,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
         Process processFirstQueue = processQueue.extractProcess();
         processCPU = processFirstQueue;
         processCPU.clock = eventCurrent.time;
-        Event nextRP = Event("RP", processFirstQueue.id, stdIn, clock);
+        Event nextRP = Event("RP", processFirstQueue.id, stdIn, eventCurrent.time);
 
         //Statistics
         timeAccumulatedQueue = processCPU.clock - processFirstQueue.clock;
@@ -123,7 +126,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
         else
         {
             processIO.insertProcess(processAnalyzed);                       //Else, this process insert list IO
-            Event eventRIO = Event("RIO", processAnalyzed.id, stdIn, clock);
+            Event eventRIO = Event("RIO", processAnalyzed.id, stdIn, eventCurrent.time);
             eventList.insertEvent(eventRIO);
 
             timeProcessCPU = timeRP;
@@ -132,7 +135,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
     else
     {
         processIO.insertProcess(processAnalyzed);                           //Else, this process insert list IO
-        Event eventRIO = Event("RIO", processAnalyzed.id, stdIn, clock);
+        Event eventRIO = Event("RIO", processAnalyzed.id, stdIn, eventCurrent.time);
         eventList.insertEvent(eventRIO);
 
         timeProcessCPU = timeRP;
@@ -172,7 +175,8 @@ bool Processing::planificationProcess()
 
         if(eventCurrent.typeEvent == "Arrival")
         {
-            Process arrivalProcess(eventList.numEventArrival, stdIn.getQuantum, clock);
+            Process arrivalProcess(eventList.numEventArrival, stdIn.getQuantum, eventCurrent.time); //Create process arrival
+            eventList.numEventArrival++;                                                //Increment number of arrival in the system
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }
         else if(eventCurrent.typeEvent == "RP")

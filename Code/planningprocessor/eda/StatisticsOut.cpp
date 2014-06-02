@@ -1,6 +1,6 @@
-#include <eda/StadisticsOut.h>
+#include <eda/StatisticsOut.h>
 
-StadisticsOut::StadisticsOut()
+StatisticsOut::StatisticsOut()
 {
     //Date
     timeTotalSimulation = 0;

@@ -2,23 +2,23 @@
 
 
 //CONSTRUCTORES
-File::File(StadisticIn stadisticIn, string input_name, string output_name, string log_name){
-	this->stadisticIn = stadisticIn;
+File::File(StatisticsIn StatisticsIn, string input_name, string output_name, string log_name){
+	this->StatisticsIn = StatisticsIn;
 	this->input_name=input_name;
 	this->output_name=output_name;
 	this->log_name=log_name;
 }
 
 File::File() {
-	StadisticIn *p = &this->stadisticIn;
+	StatisticsIn *p = &this->StatisticsIn;
 	p=NULL;
 	this->input_name="";
 	this->output_name="";
 	this->log_name="";
 }
 //GETTERS
-StadisticIn File::getStadisticIn(){
-	return this->stadisticIn;
+StatisticsIn File::getStatisticsIn(){
+	return this->StatisticsIn;
 }
 
 string File::getInput_name(){
@@ -36,8 +36,8 @@ string File::getLog_name(){
 
 //SETTERS
 
-void File::setStadisticIn(StadisticIn stadisticIn){
-	this->stadisticIn=stadisticIn;
+void File::setStatisticsIn(StatisticsIn StatisticsIn){
+	this->StatisticsIn=StatisticsIn;
 }
 
 void File::setInput_name(string input_name){
@@ -178,8 +178,8 @@ void File::readInput(){
 		cout <<"ERROR. The file doesn't exists or there are no permission to open it"<<endl;
 	}
 
-	StadisticIn inputStadisticIn=StadisticIn(numproc, quantum, algorithm, interarrive, service, RP, RIO, interarriveInter1, interarriveInter2, serviceInter1, serviceInter2, RPInter1, RPInter2, RIOInter1, RIOInter2);
-	this->stadisticIn=inputStadisticIn;
+	StatisticsIn inputStatisticsIn=StatisticsIn(numproc, quantum, algorithm, interarrive, service, RP, RIO, interarriveInter1, interarriveInter2, serviceInter1, serviceInter2, RPInter1, RPInter2, RIOInter1, RIOInter2);
+	this->StatisticsIn=inputStatisticsIn;
 
 }
 

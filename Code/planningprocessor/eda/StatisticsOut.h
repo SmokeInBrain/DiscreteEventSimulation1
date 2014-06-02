@@ -1,11 +1,11 @@
-#ifndef STADISTICSOUT_H_INCLUDED
-#define STADISTICSOUT_H_INCLUDED
+#ifndef STATISTICSOUT_H_INCLUDED
+#define STATISTICSOUT_H_INCLUDED
 
-class StadisticsOut
+class StatisticsOut
 {
     public:
         //Constructor
-            StadisticsOut();
+            StatisticsOut();
 
         //Atribute
             //Date general
@@ -26,4 +26,4 @@ class StadisticsOut
 
 };
 
-#endif // STADISTICSOUT_H_INCLUDED
+#endif // StatisticsOut_H_INCLUDED

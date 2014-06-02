@@ -1,29 +1,32 @@
+#ifndef FILE_H_INCLUDED
+#define FILE_H_INCLUDED
+
 #include <string>
 #include <stdlib.h>
 #include <fstream>
 #include <iostream>
 #include <getopt.h>
 
-#include <eda/StadisticIn.h>
+#include <eda/StatisticsIn.h>
 
 using namespace std;
 class File
 {
 private:
-	StadisticIn stadisticIn;
+	StatisticsIn StatisticsIn;
 	string input_name;
 	string output_name;
 	string log_name;
 public:
-	File(StadisticIn stadisticIn, string input_name, string output_name, string log_name);
+	File(StatisticsIn StatisticsIn, string input_name, string output_name, string log_name);
 	File();
 	//GETTERS
-	StadisticIn getStadisticIn();
+	StatisticsIn getStatisticsIn();
 	string getInput_name();
 	string getOutput_name();
 	string getLog_name();
 	//SETTERS
-	void setStadisticIn(StadisticIn stadisticIn);
+	void setStatisticsIn(StatisticsIn StatisticsIn);
 	void setInput_name(string input_name);
 	void setOutput_name(string output_name);
 	void setLog_name(string log_name);
@@ -36,3 +39,4 @@ public:
 
 };
 
+#endif // FILE_H_INCLUDED

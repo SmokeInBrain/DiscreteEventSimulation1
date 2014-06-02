@@ -1,6 +1,6 @@
 #include <eda/Event.h>
 
-Event::Event(string typeEvent, int idProcess, StadisticsIn stdIn, int clock)
+Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, int clock)
 {
     this->typeEvent = typeEvent;
     this->idProcess = idProcess;
