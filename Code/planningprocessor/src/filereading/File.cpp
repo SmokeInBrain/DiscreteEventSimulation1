@@ -159,12 +159,22 @@ void File::readInput(){
 			inputFile >> serviceInter2;
 		}
 		inputFile >> name >> RP >> RPInter1;
+<<<<<<< HEAD
 		if(RP=="uniforme" || RP=="normal"){
 			inputFile >> RPInter2;
+=======
+	
+		if(RP=="uniforme" || RP=="normal"){
+			inputFile >> RPInter2;
+
+>>>>>>> c3e609cd5418e2958a0d345181af2507f6959d7f
 		}
 		inputFile >> name >> RIO >> RIOInter1;
+
+		
 		if(RIO=="uniforme"){
 			inputFile >> RIOInter2;
+
 		}
 		inputFile.close();
 	}else{
