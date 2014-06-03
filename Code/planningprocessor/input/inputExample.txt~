@@ -1,6 +1,6 @@
 numproc 8000
 algorithm FCFS
-interarrival uniforme 1 100
+interarrival uniforme 1
 servicio uniforme 1 500
 RP uniforme 1 20
 RIO uniforme 1 10

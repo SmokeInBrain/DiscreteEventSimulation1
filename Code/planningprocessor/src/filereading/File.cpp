@@ -142,45 +142,42 @@ void File::readInput(){
 	string RIO="";
 	double RIOInter1=0.0;
 	double RIOInter2=0.0;
-	string s;
-	string garbage="";
+	string name;
 	ifstream inputFile;
 	cout << fileName.c_str() << endl;
 	inputFile.open(fileName.c_str());
 	if(inputFile.is_open()){
-		inputFile >> s >> numproc;
-		inputFile >> s >> algorithm;
-		if(algorithm=="RR"){
-			inputFile >> s >> quantum;
+		inputFile >> name >> numproc;
+		inputFile >> name >> algorithm;
+ 		if(algorithm=="RR"){
+			inputFile >> quantum;
+			cout << "quantum: " << quantum << endl;
 		}
-		inputFile >> s >> interarrive;
+		inputFile >> name >> interarrive >> interarriveInter1;
 		cout << interarrive << endl;
-		inputFile >> s >> interarriveInter1;
-		cout << interarriveInter1 << endl;
+		cout << interarriveInter1<< endl;
 		if(interarrive=="uniforme"){
-			inputFile >> s >> interarriveInter2;
-			cout << interarriveInter2 << endl;
+			inputFile >> interarriveInter2;
+			cout << interarriveInter2<< endl;
 		}
-
-		inputFile >> s >> service;
+		inputFile >> name >> service >> serviceInter1;
 		cout << service<< endl;
-		inputFile >> s >> serviceInter1;
+		cout << serviceInter1<< endl;
 		if(service=="uniforme"){
-			inputFile >> s >> serviceInter2;
+			inputFile >> serviceInter2;
+			cout << serviceInter2<< endl;
 		}
-		inputFile >> s >> garbage;
-		inputFile >> s >> RP;
-		inputFile >> s >> RPInter1;
+		inputFile >> name >> RP >> RPInter1;
+		cout << RP<< endl;
+		cout << RPInter1<< endl;
 		if(RP=="uniforme" || RP=="normal"){
-			inputFile >> s >> RPInter2;
+			inputFile >> RPInter2;
+			cout << RPInter2<< endl;
 		}
-		inputFile >> s >> garbage;
-		inputFile >> s >> RIO;
-		inputFile >> s >> RIOInter1;
+		inputFile >> name >> RIO >> RIOInter1;
 		if(RIO=="uniforme"){
-			inputFile >> s >> RIOInter2;
+			inputFile >> RIOInter2;
 		}
-
 		inputFile.close();
 	}else{
 		cout <<"ERROR. The file doesn't exists or there are no permission to open it"<<endl;
