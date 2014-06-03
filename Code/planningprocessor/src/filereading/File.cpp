@@ -126,7 +126,6 @@ void File::getOptions(int argc, char **argv){
 }
 void File::readInput(){
 	string fileName= this->input_name;
-	//cout << fileName << endl;
 	int numproc=0;
 	double quantum=0.0;
 	string algorithm="";
@@ -144,35 +143,24 @@ void File::readInput(){
 	double RIOInter2=0.0;
 	string name;
 	ifstream inputFile;
-	cout << fileName.c_str() << endl;
 	inputFile.open(fileName.c_str());
 	if(inputFile.is_open()){
 		inputFile >> name >> numproc;
 		inputFile >> name >> algorithm;
  		if(algorithm=="RR"){
 			inputFile >> quantum;
-			cout << "quantum: " << quantum << endl;
 		}
 		inputFile >> name >> interarrive >> interarriveInter1;
-		cout << interarrive << endl;
-		cout << interarriveInter1<< endl;
 		if(interarrive=="uniforme"){
 			inputFile >> interarriveInter2;
-			cout << interarriveInter2<< endl;
 		}
 		inputFile >> name >> service >> serviceInter1;
-		cout << service<< endl;
-		cout << serviceInter1<< endl;
 		if(service=="uniforme"){
 			inputFile >> serviceInter2;
-			cout << serviceInter2<< endl;
 		}
 		inputFile >> name >> RP >> RPInter1;
-		cout << RP<< endl;
-		cout << RPInter1<< endl;
 		if(RP=="uniforme" || RP=="normal"){
 			inputFile >> RPInter2;
-			cout << RPInter2<< endl;
 		}
 		inputFile >> name >> RIO >> RIOInter1;
 		if(RIO=="uniforme"){
