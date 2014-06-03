@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1401759177 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Event.cpp
+	"eda/Event.h"
+
+1401757085 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Event.h
+	"eda/StatisticsIn.h"
+	<string>
+
+1401757108 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/StatisticsIn.h
+	<string>
+
+1401759232 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Process.cpp
+	"eda/Process.h"
+
+1401759182 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Process.h
+
+1401759191 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/StatisticsIn.cpp
+	<stdlib.h>
+	<string>
+	"eda/StatisticsIn.h"
+
+1401759221 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/StatisticsOut.cpp
+	"eda/StatisticsOut.h"
+
+1401752780 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/StatisticsOut.h
+
+1401759445 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/filereading/File.cpp
+	"filereading/File.h"
+	<string>
+	<stdlib.h>
+	<fstream>
+	<iostream>
+	<getopt.h>
+
+1401759342 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/filereading/File.h
+	"eda/StatisticsIn.h"
+
