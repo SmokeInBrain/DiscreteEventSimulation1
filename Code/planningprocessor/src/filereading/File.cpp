@@ -151,32 +151,27 @@ void File::readInput(){
 		inputFile >> name >> algorithm;
  		if(algorithm=="RR"){
 			inputFile >> quantum;
-			cout << "quantum: " << quantum << endl;
 		}
 		inputFile >> name >> interarrive >> interarriveInter1;
-		cout << interarrive << endl;
-		cout << interarriveInter1<< endl;
 		if(interarrive=="uniforme"){
 			inputFile >> interarriveInter2;
-			cout << interarriveInter2<< endl;
 		}
 		inputFile >> name >> service >> serviceInter1;
-		cout << service<< endl;
-		cout << serviceInter1<< endl;
 		if(service=="uniforme"){
 			inputFile >> serviceInter2;
-			cout << serviceInter2<< endl;
 		}
 		inputFile >> name >> RP >> RPInter1;
-		cout << RP<< endl;
-		cout << RPInter1<< endl;
+	
 		if(RP=="uniforme" || RP=="normal"){
 			inputFile >> RPInter2;
-			cout << RPInter2<< endl;
+
 		}
 		inputFile >> name >> RIO >> RIOInter1;
+
+		
 		if(RIO=="uniforme"){
 			inputFile >> RIOInter2;
+
 		}
 		inputFile.close();
 	}else{

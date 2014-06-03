@@ -9,7 +9,7 @@ int main(int argc, char * argv[])
     file.getOptions(argc, argv);
     file.readInput();
 
-    cout << "Numero de procesos" << file.getStdIn().getNumProc();
+    cout << "Numero de procesos: " << file.getStdIn().getNumProc();
 
     /*
     Processing processing();
