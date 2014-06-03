@@ -71,7 +71,7 @@ void File::help_printing ()
 
 void File::getOptions(int argc, char **argv){
 	int next_opt;
-	const char* const short_op = "hiol:" ;
+	const char* const short_op = "hi:o:l:" ;
 	const struct option long_op[] =
   	{
   	  { "help", 0, NULL, 'h'},
@@ -80,14 +80,15 @@ void File::getOptions(int argc, char **argv){
       { "log",       1,  NULL,   'l'},
       { NULL,           0,  NULL,   0  }
  	 };
- 	const char* input_file = NULL;
-  	const char* output_file = NULL ;
-  	const char* log_file = NULL;
+ 	char* input_file;
+  	char* output_file;
+  	char* log_file;
   	if(argc==1){
   		cout <<"ERROR. THE PROGRAM HAS BEEN EXECUTED WITHOUT PARAMETERS OR OPTIONS"<<endl;
   		help_printing();
   		exit(EXIT_SUCCESS);
   	}
+
   	while(1){
   		next_opt = getopt_long(argc, argv, short_op, long_op, NULL);
   		if(next_opt==-1){
@@ -125,11 +126,12 @@ void File::getOptions(int argc, char **argv){
 }
 void File::readInput(){
 	string fileName= this->input_name;
+	//cout << fileName << endl;
 	int numproc=0;
 	double quantum=0.0;
 	string algorithm="";
 	string interarrive="";
-	double interarriveInter1=0.0;
+	double interarriveInter1=0;
 	double interarriveInter2=0.0;
 	string service="";
 	double serviceInter1=0.0;
@@ -143,24 +145,25 @@ void File::readInput(){
 	string s;
 	string garbage="";
 	ifstream inputFile;
+	cout << fileName.c_str() << endl;
 	inputFile.open(fileName.c_str());
 	if(inputFile.is_open()){
-
-		inputFile >> s >> garbage;
 		inputFile >> s >> numproc;
-		inputFile >> s >> garbage;
 		inputFile >> s >> algorithm;
 		if(algorithm=="RR"){
 			inputFile >> s >> quantum;
 		}
-		inputFile >> s >> garbage;
 		inputFile >> s >> interarrive;
+		cout << interarrive << endl;
 		inputFile >> s >> interarriveInter1;
+		cout << interarriveInter1 << endl;
 		if(interarrive=="uniforme"){
 			inputFile >> s >> interarriveInter2;
+			cout << interarriveInter2 << endl;
 		}
-		inputFile >> s >> garbage;
+
 		inputFile >> s >> service;
+		cout << service<< endl;
 		inputFile >> s >> serviceInter1;
 		if(service=="uniforme"){
 			inputFile >> s >> serviceInter2;
