@@ -7,6 +7,9 @@ int main(int argc, char * argv[])
 {
     File file = File();
     file.getOptions(argc, argv);
+    file.readInput();
+
+    cout << "Numero de procesos" << file.getStdIn().getNumProc();
 
     /*
     Processing processing();

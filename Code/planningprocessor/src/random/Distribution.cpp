@@ -1,50 +1,55 @@
 #include <stdlib.h>
 #include "random/Distribution.h"
 
-Distribution::Distribution(Random random){
+Distribution::Distribution(Random random)
+{
 	this->random = random;
 	random.plantSeeds(1);
 }
 
 
-Distribution::Distribution(){
+Distribution::Distribution()
+{
 	Random *p = &this->random;
 	p=NULL;
 }
 
-Random Distribution::getRandom(){
+Random Distribution::getRandom()
+{
   	return this->random;
 }
 
-void Distribution::setRandom(Random random){
+void Distribution::setRandom(Random random)
+{
   	this->random = random;
 }
 
-double Distribution::uniform(double a, double b){
+double Distribution::uniform(double a, double b)
+{
  	double u  = this->random.calcRandom();
 	double result = a+((b-a)*u);
 	
 	return result;
 }	
-double Distribution::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2){
+
+double Distribution::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)
+{
   double arrivalTime=0.0;
   if(interarrive=="exponencial"){
-    double exponentialArrivalTime= exponential(interarriveInter1); 
-    arrivalTime=exponentialArrivalTime;
+    arrivalTime = exponential(interarriveInter1);
   }else if(interarrive=="uniforme"){
-    double uniformArrivalTime= uniform(interarriveInter1,interarriveInter2); 
-    arrivalTime=exponentialArrivalTime;
+    arrivalTime = uniform(interarriveInter1,interarriveInter2);
   }else if(interarrive=="normal"){
-    double normalArrivalTime=normal(interarriveInter1,interarriveInter2);
-    arrivalTime=normalArrivalTime;
+    arrivalTime = normal(interarriveInter1,interarriveInter2);
   }else if(interarrive=="constante"){
-    double constantArrivalTime=interarriveInter1;
-    arrivalTime=constantArrivalTime;
+    arrivalTime = interarriveInter1;
   }
 
   return arrivalTime;
 }
-double Distribution::normal(double mu, double desv){
+
+double Distribution::normal(double mu, double desv)
+{
   const double p0 = 0.322232431088;     const double q0 = 0.099348462606;
   const double p1 = 1.0;                const double q1 = 0.588581570495;
   const double p2 = 0.342242088547;     const double q2 = 0.531103462366;
@@ -70,8 +75,8 @@ double Distribution::normal(double mu, double desv){
 }
 
 
-
-double Distribution::exponential(double lambda){
+double Distribution::exponential(double lambda)
+{
  	double u  = this->random.calcRandom();
 	double result = -lambda*log(1.0-u);
 

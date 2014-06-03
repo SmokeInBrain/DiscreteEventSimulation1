@@ -6,6 +6,8 @@
 #include <iostream>
 #include <getopt.h>
 
+using namespace std;
+
 //CONSTRUCTORES
 File::File(StatisticsIn stdIn, string input_name, string output_name, string log_name){
 	this->stdIn = stdIn;
@@ -120,8 +122,6 @@ void File::getOptions(int argc, char **argv){
   	this->input_name=ifile;
   	this->output_name=ofile;
   	this->log_name=lfile;
-
-
 }
 void File::readInput(){
 	string fileName= this->input_name;
@@ -183,8 +183,8 @@ void File::readInput(){
 		cout <<"ERROR. The file doesn't exists or there are no permission to open it"<<endl;
 	}
 
-	StatisticsIn inputStatisticsIn=StatisticsIn(numproc, quantum, algorithm, interarrive, service, RP, RIO, interarriveInter1, interarriveInter2, serviceInter1, serviceInter2, RPInter1, RPInter2, RIOInter1, RIOInter2);
-	this->stdIn=inputStatisticsIn;
+	StatisticsIn inputStatisticsIn = StatisticsIn(numproc, quantum, algorithm, interarrive, service, RP, RIO, interarriveInter1, interarriveInter2, serviceInter1, serviceInter2, RPInter1, RPInter2, RIOInter1, RIOInter2);
+	this->stdIn = inputStatisticsIn;
 
 }
 
