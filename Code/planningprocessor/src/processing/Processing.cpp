@@ -28,9 +28,11 @@ Processing::Processing(StatisticsIn stdIn)
     Event firstEventRP = Event("RP", 1, stdIn, clock);
     eventList.insertEvent(firstEventRP);
 
+    eventList.numEventArrival = 1;                      //Setting arrival for default
+
     //Initialize second Arrival
     Event secondEventArrival = Event("Arrival", 2, stdIn, clock);
-    eventList.numEventArrival = 2;
+    eventList.insertEvent(secondEventArrival);
 
     //Initialize statistics
     timeAccumulatedQueue = 0;
@@ -91,6 +93,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
         processCPU = processFirstQueue;
         processCPU.clock = eventCurrent.time;
         Event nextRP = Event("RP", processFirstQueue.id, stdIn, eventCurrent.time);
+        eventList.insertEvent(nextRP);                                              //And insert in the FEL
 
         //Statistics
         timeAccumulatedQueue = processCPU.clock - processFirstQueue.clock;
@@ -157,12 +160,22 @@ int Processing::activityProcessIO(Event eventCurrent)
 {
     Process processCurrentIO = processIO.extractProcessIO(eventCurrent.idProcess);  //Determinate process IO to extract
     processCurrentIO.clock = eventCurrent.time;                                     //Switch clock of process
-    processQueue.insertProcess(processCurrentIO);                                   //Insert process IO in the queue
 
-    //Statistics
-    timeAccumulatedIO += (eventCurrent.time - clock);
+    //Insert process IO in the queue
+    if(condProcessCPU)
+    {
+        largeQueue++;                                                           //Increment queue
+        processQueue.insertProcess(processCurrentIO);                             //Insert process in queue
+    }
+    else
+    {
+        condProcessCPU = true;                                                 //Setting process CPU
+        processCPU = processCurrentIO;
+        Event nextRP = Event("RP", eventCurrent.idProcess, stdIn, eventCurrent.time);      //Create next RP in the system
+        eventList.insertEvent(nextRP);                                         //Insert event RP in FEL
+    }
 
-    largeQueue++;
+
     if(maxLargeQueue < largeQueue)
         maxLargeQueue = largeQueue;
 
@@ -180,8 +193,8 @@ bool Processing::planificationProcess()
 
         if(eventCurrent.typeEvent == "Arrival")
         {
+            eventList.numEventArrival++;                                                              //Increment number of arrival in the system
             Process arrivalProcess(eventList.numEventArrival, stdIn.getQuantum(), eventCurrent.time); //Create process arrival
-            eventList.numEventArrival++;                                                //Increment number of arrival in the system
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }
         else if(eventCurrent.typeEvent == "RP")

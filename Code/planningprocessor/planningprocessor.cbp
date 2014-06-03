@@ -13,7 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="class" />
+					<Add directory="src" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -34,27 +34,29 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="eda/Event.cpp" />
-		<Unit filename="eda/Event.h" />
-		<Unit filename="eda/Process.cpp" />
-		<Unit filename="eda/Process.h" />
-		<Unit filename="eda/StatisticsIn.cpp" />
-		<Unit filename="eda/StatisticsIn.h" />
-		<Unit filename="eda/StatisticsOut.cpp" />
-		<Unit filename="eda/StatisticsOut.h" />
-		<Unit filename="filereading/File.cpp" />
-		<Unit filename="filereading/File.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="processing/Processing.cpp" />
-		<Unit filename="processing/Processing.h" />
-		<Unit filename="random/Distribution.cpp" />
-		<Unit filename="random/Distribution.h" />
-		<Unit filename="random/Random.cpp" />
-		<Unit filename="random/Random.h" />
-		<Unit filename="vector/VectorEvent.cpp" />
-		<Unit filename="vector/VectorEvent.h" />
-		<Unit filename="vector/VectorProcess.cpp" />
-		<Unit filename="vector/VectorProcess.h" />
+		<Unit filename="Makefile" />
+		<Unit filename="input/inputExample.txt" />
+		<Unit filename="src/eda/Event.cpp" />
+		<Unit filename="src/eda/Event.h" />
+		<Unit filename="src/eda/Process.cpp" />
+		<Unit filename="src/eda/Process.h" />
+		<Unit filename="src/eda/StatisticsIn.cpp" />
+		<Unit filename="src/eda/StatisticsIn.h" />
+		<Unit filename="src/eda/StatisticsOut.cpp" />
+		<Unit filename="src/eda/StatisticsOut.h" />
+		<Unit filename="src/filereading/File.cpp" />
+		<Unit filename="src/filereading/File.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/processing/Processing.cpp" />
+		<Unit filename="src/processing/Processing.h" />
+		<Unit filename="src/random/Distribution.cpp" />
+		<Unit filename="src/random/Distribution.h" />
+		<Unit filename="src/random/Random.cpp" />
+		<Unit filename="src/random/Random.h" />
+		<Unit filename="src/vector/VectorEvent.cpp" />
+		<Unit filename="src/vector/VectorEvent.h" />
+		<Unit filename="src/vector/VectorProcess.cpp" />
+		<Unit filename="src/vector/VectorProcess.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

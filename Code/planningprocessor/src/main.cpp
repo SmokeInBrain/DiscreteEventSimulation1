@@ -7,22 +7,17 @@ using namespace std;
 int main(int argc, char * argv[])
 {
     File file = File();
-    file.getOptions(argc, argv);
+    //file.getOptions(argc, argv);
+    file.setInput_name("input/inputExample.txt");
     file.readInput();
-    
+
     Processing processing = Processing(file.getStdIn());
 
-    cout << "Numero de procesos: " << file.getStdIn().getNumProc();
-
-    /*
-    Processing processing();
     if(processing.planificationProcess()){
         cout<<"True";
     }else{
         cout<<"False";
     }
-    */
-    
 
     return 0;
 }
