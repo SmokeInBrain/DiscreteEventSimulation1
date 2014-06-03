@@ -3,6 +3,7 @@
 
 #include "Random.h"
 #include <math.h>
+#include "eda/StatisticsIn.h"
 
 class Distribution{
 
@@ -17,6 +18,7 @@ class Distribution{
         double uniform(double a, double b);
         double normal(double mu, double desv);
         double exponential(double lambda);
+        double determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2);
 
 };
 

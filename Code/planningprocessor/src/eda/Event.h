@@ -2,6 +2,8 @@
 #define EVENT_H_INCLUDED
 
 #include "eda/StatisticsIn.h"
+#include "random/Random.h"
+#include "random/Distribution.h"
 #include <string>
 
 using namespace std;
