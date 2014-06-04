@@ -2,7 +2,12 @@
 #define FILE_H_INCLUDED
 
 #include "eda/StatisticsIn.h"
-
+#include "eda/Event.h"
+#include <string>
+#include <stdlib.h>
+#include <fstream>
+#include <iostream>
+#include <getopt.h>
 using namespace std;
 
 class File
@@ -12,8 +17,9 @@ private:
 	string input_name;
 	string output_name;
 	string log_name;
+	ofstream *ofs;
 public:
-	File(StatisticsIn stdIn, string input_name, string output_name, string log_name);
+	File(StatisticsIn stdIn, string input_name, string output_name, string log_name, ofstream *ofs);
 	File();
 	//GETTERS
 	StatisticsIn getStdIn();
@@ -30,7 +36,9 @@ public:
 	void getOptions(int argc, char **argv);
 	void readInput();
 	void writeOutput();
-	void writeLog();
+	void openLog();
+	void Log(Event currentEvent);
+	void closeLog();
 
 };
 

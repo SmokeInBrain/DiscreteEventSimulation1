@@ -1,19 +1,15 @@
 #include "filereading/File.h"
 
-#include <string>
-#include <stdlib.h>
-#include <fstream>
-#include <iostream>
-#include <getopt.h>
 
 using namespace std;
 
 //CONSTRUCTORES
-File::File(StatisticsIn stdIn, string input_name, string output_name, string log_name){
+File::File(StatisticsIn stdIn, string input_name, string output_name, string log_name, ofstream *ofs){
 	this->stdIn = stdIn;
 	this->input_name=input_name;
 	this->output_name=output_name;
 	this->log_name=log_name;
+	this->ofs = ofs;
 }
 
 File::File() {
@@ -22,6 +18,7 @@ File::File() {
 	this->input_name="";
 	this->output_name="";
 	this->log_name="";
+	this->ofs = NULL;
 }
 //GETTERS
 StatisticsIn File::getStdIn(){
@@ -41,6 +38,8 @@ string File::getLog_name(){
 }
 
 
+
+
 //SETTERS
 
 void File::setStdIn(StatisticsIn stdIn){
@@ -58,6 +57,7 @@ void File::setOutput_name(string output_name){
 void File::setLog_name(string log_name){
 	this->log_name=log_name;
 }
+
 
 //METODOS
 void File::help_printing ()
@@ -182,7 +182,19 @@ void File::readInput(){
 void File::writeOutput(){
 
 }
+void File::openLog(){
+	const char *nombre_log = this->log_name.c_str();
+	cout <<nombre_log<< endl;
+	ofs = new ofstream(nombre_log, ios::binary | ios::out);
 
-void File::writeLog(){
 
+	//&this->ofs = ofst;
+
+}
+void File::Log(Event currentEvent){
+	*ofs << "Este es un ejemplo de como se escribe"<<endl;
+
+}
+void File::closeLog(){
+	ofs->close();
 }
