@@ -19,18 +19,38 @@ Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, int clock)
 
     if(typeEvent == "Arrival"){
     	double distArrival = dist.determineDistribution(interarrivo, interarrivoInter[0], interarrivoInter[1]);
-    	time = clock + distArrival;
+    	this->time = clock + distArrival;
     }
     else if(typeEvent == "RP"){
         double distRP = dist.determineDistribution(RP, RPInter[0], RPInter[1]);
-    	time = clock + distRP;
+    	this->time = clock + distRP;
     }
     else if(typeEvent == "RIO"){
         double distRIO = dist.determineDistribution(RIO, RIOInter[0], RIOInter[1]);
-        time = clock + distRIO;
+        this->time = clock + distRIO;
     }
     else if(typeEvent == "Final")
     {
         this->time = clock;
     }
+}
+//GETTERS
+string Event::getTypeEvent(){
+	return this->typeEvent;
+}
+int Event::getTime(){
+	return this->time;
+}
+int Event::getIdProcess(){
+	return this->idProcess;
+}
+//SETTERS
+void Event::setTypeEvent(string typeEvent){
+	this->typeEvent=typeEvent;
+}
+void Event::setTime(int time){
+	this->time=time;
+}
+void Event::setIdProcess(int idProcess){
+	this->idProcess=idProcess;
 }

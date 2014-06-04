@@ -10,14 +10,25 @@ using namespace std;
 
 class Event
 {
+	private:
+		//Attributes
+       	string typeEvent;
+        int time;
+        int idProcess;
+
     public:
         //Constructor
             Event(string typeEvent, int idProcess, StatisticsIn stdIn, int clock);
+            //GETTERS
+            string getTypeEvent();
+            int getTime();
+            int getIdProcess();
+            //SETTERS
+            void setTypeEvent(string typeEvent);
+            void setTime(int time);
+            void setIdProcess(int idProcess);
 
-        //Attributes
-            string typeEvent;
-            int time;
-            int idProcess;
+        
 
         //Methods
             //bool finishEvent();

@@ -1,5 +1,5 @@
 #include "filereading/File.h"
-
+#include <iomanip> 
 
 using namespace std;
 
@@ -186,13 +186,33 @@ void File::openLog(){
 	const char *nombre_log = this->log_name.c_str();
 	cout <<nombre_log<< endl;
 	ofs = new ofstream(nombre_log, ios::binary | ios::out);
+	*ofs <<setw(10)<<left<<"|PID"<<setw(15)<<left<<"|Event Type"<<setw(10)<<left<<"|Time|"<<endl;
+	*ofs <<"-------------------------------"<<endl;
+
 
 
 	//&this->ofs = ofst;
 
 }
 void File::Log(Event currentEvent){
-	*ofs << "Este es un ejemplo de como se escribe"<<endl;
+	*ofs <<setw(9)<<left<<"|"<<currentEvent.getIdProcess();
+	if(currentEvent.getTypeEvent()=="Arrival"){
+		*ofs<<setw(8)<<left<<"|"<<currentEvent.getTypeEvent();
+	}else{
+		if(currentEvent.getTypeEvent()=="RP"){
+			*ofs<<setw(13)<<left<<"|"<<currentEvent.getTypeEvent();
+		}else{
+			if(currentEvent.getTypeEvent()=="RIO"){
+				*ofs<<setw(12)<<left<<"|"<<currentEvent.getTypeEvent();
+			}else{
+				if(currentEvent.getTypeEvent()=="Final"){
+					*ofs<<setw(10)<<left<<"|"<<currentEvent.getTypeEvent();
+				}
+			}
+		}
+	}
+	*ofs<<setw(4)<<left<<"|"<<currentEvent.getTime()<<"|\n";
+	*ofs <<"-------------------------------"<<endl;
 
 }
 void File::closeLog(){

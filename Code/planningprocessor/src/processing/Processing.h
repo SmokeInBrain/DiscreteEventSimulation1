@@ -4,12 +4,11 @@
 #include "eda/StatisticsIn.h"
 #include "vector/VectorProcess.h"
 #include "vector/VectorEvent.h"
+#include "filereading/File.h"
+
 
 class Processing{
-    public:
-        //Constructor
-            Processing(StatisticsIn stdIn);
-
+    private:
         //Attributes
             //Date global
             StatisticsIn stdIn;
@@ -38,11 +37,45 @@ class Processing{
 
             int processFinish;
 
+    public:
+        //Constructor
+            Processing(StatisticsIn stdIn);
+        //Getters
+            StatisticsIn getStdIn();
+            int getClock();
+            int getLargeQueue();
+            bool getCondProcessCPU();
+            VectorProcess getProcessQueue();
+            Process getProcessCPU();
+            VectorProcess getProcessIO();
+            VectorEvent getEventList();
+            int getTimeAccumulatedQueue();
+            int getTimeAccumulatedCPU();
+            int getTimeAccumulatedIO();
+            int getLargeAccumulatedQueue();
+            int getMaxLargeQueue();
+            int getProcessFinish();
+        //Setters
+            void setStdIn(StatisticsIn stdIn);
+            void setClock(int clock);
+            void setLargeQueue(int largeQueue);
+            void setCondProcessCPU(bool condProcessCPU);
+            void setProcessQueue(VectorProcess processQueue);
+            void setProcessCPU(Process processCPU);
+            void setProcessIO(VectorProcess processIO);
+            void setEventList(VectorEvent eventList);
+            void setTimeAccumulatedQueue(int timeAccumulatedQueue);
+            void setTimeAccumulatedCPU(int timeAccumulatedCPU);
+            void setTimeAccumulatedIO(int timeAccumulatedIO);
+            void setLargeAccumulatedQueue(int largeAccumulatedQueue);
+            void setMaxLargeQueue(int maxLargeQueue);
+            void setProcessFinish(int processFinish);
+
         //Methods
             int activityArrivalProcess(Event eventCurrent, Process processArrival);
             int activityProcessCPU(Event eventCurrent);
             int activityProcessIO(Event eventCurrent);
-            bool planificationProcess();
+            bool planificationProcess(File file);
 
 };
 

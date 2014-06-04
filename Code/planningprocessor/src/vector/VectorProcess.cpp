@@ -16,6 +16,28 @@ VectorProcess::VectorProcess(int largeMax, string typePriority)
 
 }
 
+//Getters
+int VectorProcess::getLargeMax(){
+    return this->largeMax;
+}
+vector <Process> VectorProcess::getListProcess(){
+    return this->listProcess;
+}
+string VectorProcess::getTypePriority(){
+    return this->typePriority;
+
+}
+//Setters
+void VectorProcess::setLargeMax(int largeMax){
+    this->largeMax=largeMax;
+}
+void VectorProcess::setListProcess(vector <Process> listProcess){
+    this->listProcess=listProcess;
+}
+void VectorProcess::setTypePriority(string typePriority){
+    this->typePriority=typePriority;
+}
+
 void VectorProcess::insertProcess(Process process)
 {
 
@@ -28,7 +50,7 @@ void VectorProcess::insertProcess(Process process)
         int position = 0;
         for (unsigned int i = 0; i < listProcess.size(); i++)
         {
-            if (listProcess[i].timeProcessor < process.timeProcessing)
+            if (listProcess[i].getTimeProcessor() < process.getTimeProcessing())
                 position++;
         }
 
@@ -60,6 +82,6 @@ void VectorProcess::printAllList()
 {
 
     for (unsigned int i = 0; i < listProcess.size(); i++)
-        cout << "[" << i << "]: ID: " << listProcess[i].id << " Clock: " << listProcess[i].clock << " TimeProcessor: " << listProcess[i].timeProcessor << " TimeProcessing: " << listProcess[i].timeProcessing << " Quantum: " << listProcess[i].quantum << "\n";
+        cout << "[" << i << "]: ID: " << listProcess[i].getId() << " Clock: " << listProcess[i].getClock() << " TimeProcessor: " << listProcess[i].getTimeProcessor() << " TimeProcessing: " << listProcess[i].getTimeProcessing() << " Quantum: " << listProcess[i].getQuantum() << "\n";
     cout << "\n";
 }

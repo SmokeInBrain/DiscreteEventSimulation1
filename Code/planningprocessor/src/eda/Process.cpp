@@ -2,11 +2,11 @@
 
 Process::Process()
 {
-    id = 0;
-    clock = 0;
-    timeProcessor = 0;
-    timeProcessing = 0;
-    quantum = 0;
+    this->id = 0;
+    this->clock = 0;
+    this->timeProcessor = 0;
+    this->timeProcessing = 0;
+    this->quantum = 0;
 }
 
 Process::Process(int id, double quantum, int clock)
@@ -14,9 +14,41 @@ Process::Process(int id, double quantum, int clock)
     //Datos
     this->id = id;
     this->clock = clock;
-    timeProcessor = calculateProcessor();
-    timeProcessing = 0;
+    this->timeProcessor = calculateProcessor();
+    this->timeProcessing = 0;
     this->quantum = quantum;
+}
+//GETTERS
+int Process::getId(){
+	return this->clock;
+}
+int Process::getClock(){
+	return this->clock;
+}
+float Process::getTimeProcessor(){
+	return this->timeProcessor;
+}
+float Process::getTimeProcessing(){
+	return this->timeProcessing;
+}
+double Process::getQuantum(){
+	return this->quantum;
+}
+//SETTERS
+void Process::setId(int id){
+	this->id=id;
+}
+void Process::setClock(int clock){
+	this->clock=clock;
+}
+void Process::setTimeProcessor(int timeProcessor){
+	this->timeProcessor=timeProcessor;
+}
+void Process::setTimeProcessing(int timeProcessing){
+	this->timeProcessing=timeProcessing;
+}
+double Process::setQuantum(int quantum){
+	this->quantum=quantum;
 }
 
 float Process::calculateProcessor(){

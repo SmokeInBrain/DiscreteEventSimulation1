@@ -13,15 +13,15 @@ int main(int argc, char * argv[])
     file.openLog();
     //En el log debe entrar el evento como parámetro.
     //file.Log();
-    file.closeLog();
+    
 
     Processing processing = Processing(file.getStdIn());
 
-    if(processing.planificationProcess()){
+    if(processing.planificationProcess(file)){
         cout<<"True";
     }else{
         cout<<"False";
     }
-
+    file.closeLog();
     return 0;
 }

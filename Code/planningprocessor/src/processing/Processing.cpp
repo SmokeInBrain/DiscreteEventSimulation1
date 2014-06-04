@@ -28,7 +28,7 @@ Processing::Processing(StatisticsIn stdIn)
     Event firstEventRP = Event("RP", 1, stdIn, clock);
     eventList.insertEvent(firstEventRP);
 
-    eventList.numEventArrival = 1;                      //Setting arrival for default
+    eventList.setNumEventArrival(1);                      //Setting arrival for default
 
     //Initialize second Arrival
     Event secondEventArrival = Event("Arrival", 2, stdIn, clock);
@@ -45,6 +45,92 @@ Processing::Processing(StatisticsIn stdIn)
     processFinish = 0;
 
 }
+//Getters
+StatisticsIn Processing::getStdIn(){
+    return this->stdIn;
+}
+int Processing::getClock(){
+    return this->clock;
+}
+int Processing::getLargeQueue(){
+    return this->largeQueue;
+}
+bool Processing::getCondProcessCPU(){
+    return this->condProcessCPU;
+}
+VectorProcess Processing::getProcessQueue(){
+    return this->processQueue;
+}
+Process Processing::getProcessCPU(){
+    return this->processCPU;
+}
+VectorProcess Processing::getProcessIO(){
+    return this->processIO;
+}
+VectorEvent Processing::getEventList(){
+    return this->eventList;
+}
+int Processing::getTimeAccumulatedQueue(){
+    return this->timeAccumulatedQueue;
+}
+int Processing::getTimeAccumulatedCPU(){
+    return this->timeAccumulatedCPU;
+}
+int Processing::getTimeAccumulatedIO(){
+    return this->timeAccumulatedIO;
+}
+int Processing::getLargeAccumulatedQueue(){
+    return this->largeAccumulatedQueue;
+}
+int Processing::getMaxLargeQueue(){
+    return this->maxLargeQueue;
+}
+int Processing::getProcessFinish(){
+    return this->processFinish;
+}
+//Setters
+void Processing::setStdIn(StatisticsIn stdIn){
+    this->stdIn=stdIn;
+}
+void Processing::setClock(int clock){
+    this->clock=clock;
+}
+void Processing::setLargeQueue(int largeQueue){
+    this->largeQueue=largeQueue;
+}
+void Processing::setCondProcessCPU(bool condProcessCPU){
+    this->condProcessCPU=condProcessCPU;
+}
+void Processing::setProcessQueue(VectorProcess processQueue){
+    this->processQueue=processQueue;
+}
+void Processing::setProcessCPU(Process processCPU){
+    this->processCPU=this->processCPU;
+}
+void Processing::setProcessIO(VectorProcess processIO){
+    this->processIO=processIO;
+}
+void Processing::setEventList(VectorEvent eventList){
+    this->eventList=eventList;
+}
+void Processing::setTimeAccumulatedQueue(int timeAccumulatedQueue){
+    this->timeAccumulatedQueue=timeAccumulatedQueue;
+}
+void Processing::setTimeAccumulatedCPU(int timeAccumulatedCPU){
+    this->timeAccumulatedCPU=timeAccumulatedCPU;
+}
+void Processing::setTimeAccumulatedIO(int timeAccumulatedIO){
+    this->timeAccumulatedIO=timeAccumulatedIO;
+}
+void Processing::setLargeAccumulatedQueue(int largeAccumulatedQueue){
+    this->largeAccumulatedQueue=largeAccumulatedQueue;
+}
+void Processing::setMaxLargeQueue(int maxLargeQueue){
+    this->maxLargeQueue=maxLargeQueue;
+}
+void Processing::setProcessFinish(int processFinish){
+    this->processFinish=processFinish;
+}
 
 int Processing::activityArrivalProcess(Event eventCurrent, Process processArrival)
 {
@@ -57,29 +143,29 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
     {
         condProcessCPU = true;                                                 //Setting process CPU
         processCPU = processArrival;
-        Event nextRP = Event("RP", eventCurrent.idProcess, stdIn, eventCurrent.time);      //Create next RP in the system
+        Event nextRP = Event("RP", eventCurrent.getIdProcess(), stdIn, eventCurrent.getTime());      //Create next RP in the system
         eventList.insertEvent(nextRP);                                         //Insert event RP in FEL
     }
 
     //Generate next arrival
-    if(eventList.numEventArrival < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
+    if(eventList.getNumEventArrival() < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
     {
-        Event nextArrival = Event("Arrival", eventList.numEventArrival, stdIn, clock);   //Create next arrival
+        Event nextArrival = Event("Arrival", eventList.getNumEventArrival(), stdIn, clock);   //Create next arrival
         eventList.insertEvent(nextArrival);     //And insert in the FEL
     }
 
     //Statistics
-    if(maxLargeQueue < largeQueue)
-        maxLargeQueue = largeQueue;
+    if(this->maxLargeQueue < this->largeQueue)
+        this->maxLargeQueue = this->largeQueue;
 
     //Return clock
-    return eventCurrent.time;
+    return eventCurrent.getTime();
 }
 
 int Processing::activityProcessCPU(Event eventCurrent)
 {
     int timeProcessCPU;
-    int timeRP = eventCurrent.time - clock;
+    int timeRP = eventCurrent.getTime() - clock;
 
     Process processAnalyzed = processCPU;
 
@@ -91,12 +177,12 @@ int Processing::activityProcessCPU(Event eventCurrent)
         //Generate RP for the first process in the queue
         Process processFirstQueue = processQueue.extractProcess();
         processCPU = processFirstQueue;
-        processCPU.clock = eventCurrent.time;
-        Event nextRP = Event("RP", processFirstQueue.id, stdIn, eventCurrent.time);
+        processCPU.setClock(eventCurrent.getTime());
+        Event nextRP = Event("RP", processFirstQueue.getId(), stdIn, eventCurrent.getTime());
         eventList.insertEvent(nextRP);                                              //And insert in the FEL
 
         //Statistics
-        timeAccumulatedQueue = processCPU.clock - processFirstQueue.clock;
+        timeAccumulatedQueue = processCPU.getClock() - processFirstQueue.getClock();
     }
     else
     {
@@ -106,36 +192,36 @@ int Processing::activityProcessCPU(Event eventCurrent)
     }
 
     //Increment processing time of the analyzed process
-    processAnalyzed.timeProcessing += (eventCurrent.time - clock);
+    processAnalyzed.setTimeProcessing((eventCurrent.getTime() - clock)+1);
 
-    if(processAnalyzed.timeProcessor <= processAnalyzed.timeProcessing)     //If this process has not more time of processing, it finish
+    if(processAnalyzed.getTimeProcessor() <= processAnalyzed.getTimeProcessing())     //If this process has not more time of processing, it finish
     {
-        timeProcessCPU = timeRP - (processAnalyzed.timeProcessing - processAnalyzed.timeProcessor);
+        timeProcessCPU = timeRP - (processAnalyzed.getTimeProcessing() - processAnalyzed.getTimeProcessor());
         processFinish++;                                                    //Increment number of process finish
 
         if(processFinish == stdIn.getNumProc())
         {
-            Event eventFinal = Event("Final", 0, stdIn, eventCurrent.time);
+            Event eventFinal = Event("Final", 0, stdIn, eventCurrent.getTime());
             eventList.insertEvent(eventFinal);
         }
     }
-    else if(processQueue.typePriority ==  "RR")                             //If the queue is Round-Robin, then it is necessary analyzed its quantum
+    else if(processQueue.getTypePriority() ==  "RR")                             //If the queue is Round-Robin, then it is necessary analyzed its quantum
     {
-        if( processAnalyzed.quantum < timeRP)                              //If the quantum is minor to the time processing in CPU
+        if( processAnalyzed.getQuantum() < timeRP)                              //If the quantum is minor to the time processing in CPU
         {
-            processAnalyzed.clock = eventCurrent.time;                      //Switch clock of process
+            processAnalyzed.setClock(eventCurrent.getTime());                      //Switch clock of process
             processQueue.insertProcess(processAnalyzed);                    //Insert process in queue
 
             largeQueue++;                                                   //Increment queue
             if(maxLargeQueue < largeQueue)                                  //Statistics queue
                 maxLargeQueue = largeQueue;
 
-            timeProcessCPU = processAnalyzed.quantum;
+            timeProcessCPU = processAnalyzed.getQuantum();
         }
         else
         {
             processIO.insertProcess(processAnalyzed);                       //Else, this process insert list IO
-            Event eventRIO = Event("RIO", processAnalyzed.id, stdIn, eventCurrent.time);
+            Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
             eventList.insertEvent(eventRIO);
 
             timeProcessCPU = timeRP;
@@ -144,7 +230,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
     else
     {
         processIO.insertProcess(processAnalyzed);                           //Else, this process insert list IO
-        Event eventRIO = Event("RIO", processAnalyzed.id, stdIn, eventCurrent.time);
+        Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
         eventList.insertEvent(eventRIO);
 
         timeProcessCPU = timeRP;
@@ -153,13 +239,13 @@ int Processing::activityProcessCPU(Event eventCurrent)
     //Statistics
     timeAccumulatedCPU += timeProcessCPU;
 
-    return eventCurrent.time;
+    return eventCurrent.getTime();
 }
 
 int Processing::activityProcessIO(Event eventCurrent)
 {
-    Process processCurrentIO = processIO.extractProcessIO(eventCurrent.idProcess);  //Determinate process IO to extract
-    processCurrentIO.clock = eventCurrent.time;                                     //Switch clock of process
+    Process processCurrentIO = processIO.extractProcessIO(eventCurrent.getIdProcess());  //Determinate process IO to extract
+    processCurrentIO.setClock(eventCurrent.getTime());                                     //Switch clock of process
 
     //Insert process IO in the queue
     if(condProcessCPU)
@@ -171,7 +257,7 @@ int Processing::activityProcessIO(Event eventCurrent)
     {
         condProcessCPU = true;                                                 //Setting process CPU
         processCPU = processCurrentIO;
-        Event nextRP = Event("RP", eventCurrent.idProcess, stdIn, eventCurrent.time);      //Create next RP in the system
+        Event nextRP = Event("RP", eventCurrent.getIdProcess(), stdIn, eventCurrent.getTime());      //Create next RP in the system
         eventList.insertEvent(nextRP);                                         //Insert event RP in FEL
     }
 
@@ -180,10 +266,10 @@ int Processing::activityProcessIO(Event eventCurrent)
         maxLargeQueue = largeQueue;
 
     //Return time
-    return eventCurrent.time;
+    return eventCurrent.getTime();
 }
 
-bool Processing::planificationProcess()
+bool Processing::planificationProcess(File file)
 {
 
     while(true)
@@ -191,26 +277,27 @@ bool Processing::planificationProcess()
 
         Event eventCurrent = eventList.extractEvent();
 
-        if(eventCurrent.typeEvent == "Arrival")
+        file.Log(eventCurrent);
+
+        if(eventCurrent.getTypeEvent() == "Arrival")
         {
-            eventList.numEventArrival++;                                                              //Increment number of arrival in the system
-            Process arrivalProcess(eventList.numEventArrival, stdIn.getQuantum(), eventCurrent.time); //Create process arrival
+            eventList.setNumEventArrival(eventList.getNumEventArrival()+1);                                                              //Increment number of arrival in the system
+            Process arrivalProcess(eventList.getNumEventArrival(), stdIn.getQuantum(), eventCurrent.getTime()); //Create process arrival
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }
-        else if(eventCurrent.typeEvent == "RP")
+        else if(eventCurrent.getTypeEvent() == "RP")
         {
             clock = activityProcessCPU(eventCurrent);
         }
-        else if(eventCurrent.typeEvent == "RIO")
+        else if(eventCurrent.getTypeEvent() == "RIO")
         {
             clock = activityProcessIO(eventCurrent);
         }
-        else if(eventCurrent.typeEvent == "Final")
+        else if(eventCurrent.getTypeEvent() == "Final")
         {
             return true;
         }
 
     }
-
     return false;
 }
