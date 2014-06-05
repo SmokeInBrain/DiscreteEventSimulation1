@@ -25,10 +25,10 @@ int Process::getId(){
 double Process::getClock(){
 	return this->clock;
 }
-float Process::getTimeProcessor(){
+double Process::getTimeProcessor(){
 	return this->timeProcessor;
 }
-float Process::getTimeProcessing(){
+double Process::getTimeProcessing(){
 	return this->timeProcessing;
 }
 double Process::getQuantum(){
@@ -51,6 +51,6 @@ double Process::setQuantum(int quantum){
 	this->quantum=quantum;
 }
 
-float Process::calculateProcessor(){
+double Process::calculateProcessor(){
     return 10;
 }

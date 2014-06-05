@@ -9,8 +9,8 @@ class Process
             int id;
             double clock;
             //Statistics
-            float timeProcessor;    //Time that needs this process for finish
-            float timeProcessing;   //Time that this process is in the CPU
+            double timeProcessor;    //Time that needs this process for finish
+            double timeProcessing;   //Time that this process is in the CPU
             double quantum;           //Time quantum in algorithm RR
     public:
         //Constructor
@@ -19,8 +19,8 @@ class Process
             //GETTERS
             int getId();
             double getClock();
-            float getTimeProcessor();
-            float getTimeProcessing();
+            double getTimeProcessor();
+            double getTimeProcessing();
             double getQuantum();
             //SETTERS
             void setId(int id);
@@ -32,7 +32,7 @@ class Process
 
 
         //Methods
-            float calculateProcessor();
+            double calculateProcessor();
 };
 
 #endif // PROCESS_H
