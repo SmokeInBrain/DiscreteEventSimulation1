@@ -14,19 +14,19 @@ Setting parameter in the simulation
 
 To set the parameters of the simulation must modified `input.txt` file that it is in the folder `input`. Each word corresponds to a parameter, which may have different attributes that flare out.
 
-	`numproc [number]`: total number of process to simulate
-	`algorithm` [type] [quantum]: scheduling algorithm.
+	numproc [number]: total number of process to simulate
+	algorithm [type] [quantum]: scheduling algorithm.
 		type: FCFS, STF and RR
 		quantum (optional): only RR
-	`interarrival` [type] [number1] [number 2]: interarrival distribution
+	interarrival [type] [number1] [number 2]: interarrival distribution
 		type: uniform, exponential
 		example: uniforme 1 10, exponential 100
-	`service` [type] [number1] [number2]: service tiem distribution processes
+	service [type] [number1] [number2]: service tiem distribution processes
 		type: uniform, exponential
-	`RP` [type] [number1] [number2]: bursts of processor distribution
+	RP [type] [number1] [number2]: bursts of processor distribution
 		type: constant, uniform, normal, exponential
 		example: constant 5, normal 8, 16
-	`RIO` [type] [number1] [number2]: bursts of I/O distribution
+	RIO [type] [number1] [number2]: bursts of I/O distribution
 		type: constant, uniform
 
 Run simulation with custom parameter
