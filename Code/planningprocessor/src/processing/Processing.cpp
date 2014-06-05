@@ -1,5 +1,7 @@
 #include "processing/Processing.h"
 
+#include <iostream>
+
 Processing::Processing(StatisticsIn stdIn)
 {
     //Initialize Statistics
@@ -156,7 +158,7 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
     if(eventList.getNumEventArrival() < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
     {
         Event nextArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, clock);   //Create next arrival
-        eventList.insertEvent(nextArrival);     //And insert in the FEL
+        eventList.insertEvent(nextArrival);                                                     //And insert in the FEL
     }
 
     //Statistics
@@ -197,7 +199,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
     }
 
     //Increment processing time of the analyzed process
-    processAnalyzed.setTimeProcessing((eventCurrent.getTime() - clock)+1);
+    processAnalyzed.setTimeProcessing(processAnalyzed.getTimeProcessing() + (eventCurrent.getTime() - clock));
 
     if(processAnalyzed.getTimeProcessor() <= processAnalyzed.getTimeProcessing())     //If this process has not more time of processing, it finish
     {
@@ -291,7 +293,8 @@ bool Processing::planificationProcess(File file)
         if(eventCurrent.getTypeEvent() == "Arrival")
         {
             eventList.setNumEventArrival(eventList.getNumEventArrival()+1);                                                              //Increment number of arrival in the system
-            Process arrivalProcess(eventList.getNumEventArrival(), stdIn.getQuantum(), eventCurrent.getTime()); //Create process arrival
+            Process arrivalProcess = Process(eventList.getNumEventArrival()+1, stdIn.getQuantum(), eventCurrent.getTime()); //Create process arrival
+
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }
         else if(eventCurrent.getTypeEvent() == "RP")

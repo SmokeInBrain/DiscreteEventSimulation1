@@ -11,7 +11,7 @@
 1401844537 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/StatisticsIn.h
 	<string>
 
-1401925320 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Process.cpp
+1401932887 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Process.cpp
 	"eda/Process.h"
 
 1401925334 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/eda/Process.h
@@ -39,16 +39,19 @@
 	<iostream>
 	<getopt.h>
 
-1401926265 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/main.cpp
+1401931734 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/main.cpp
 	<iostream>
 	"filereading/File.h"
 	"processing/Processing.h"
 
-1401926151 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/processing/Processing.cpp
+1401932852 source:/home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/processing/Processing.cpp
 	"processing/Processing.h"
+	<iostream>
 
-1401925285 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/processing/Processing.h
+1401932802 /home/daniel/Documentos/Programación/C++/Simulación de eventos discretos/DiscreteEventSimulation1/Code/planningprocessor/src/processing/Processing.h
 	"eda/StatisticsIn.h"
+	"eda/Event.h"
+	"eda/Process.h"
 	"vector/VectorProcess.h"
 	"vector/VectorEvent.h"
 	"filereading/File.h"

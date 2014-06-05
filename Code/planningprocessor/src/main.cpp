@@ -9,7 +9,7 @@ int main(int argc, char * argv[])
     File file = File();
     //file.getOptions(argc, argv);
     file.setInput_name("input/inputExample.txt");
-    file.setLog_name("log/logExample.txt");
+    file.setLog_name("log/logExamplex2.txt");
 
     file.readInput();
 

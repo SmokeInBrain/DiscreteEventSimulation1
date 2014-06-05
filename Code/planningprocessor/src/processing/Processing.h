@@ -2,6 +2,8 @@
 #define PROCESSING_H
 
 #include "eda/StatisticsIn.h"
+#include "eda/Event.h"
+#include "eda/Process.h"
 #include "vector/VectorProcess.h"
 #include "vector/VectorEvent.h"
 #include "filereading/File.h"

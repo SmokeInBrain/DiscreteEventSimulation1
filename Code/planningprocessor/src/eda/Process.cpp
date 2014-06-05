@@ -20,7 +20,7 @@ Process::Process(int id, double quantum, double clock)
 }
 //GETTERS
 int Process::getId(){
-	return this->clock;
+	return this->id;
 }
 double Process::getClock(){
 	return this->clock;
@@ -52,5 +52,5 @@ double Process::setQuantum(int quantum){
 }
 
 float Process::calculateProcessor(){
-    return 50;
+    return 10;
 }
