@@ -3,6 +3,8 @@
 #include "eda/StatisticsIn.h"
 #include "random/Distribution.h"
 #include <string>
+#include <iostream>
+
 using namespace std;
 class Process
 {
@@ -33,10 +35,9 @@ class Process
             void setTimeProcessing(double timeProcessing);
             double setQuantum(int quantum);
 
-
-
         //Methods
             double calculateProcessor(StatisticsIn stdIn);
+            void printProcess();
 };
 
 #endif // PROCESS_H

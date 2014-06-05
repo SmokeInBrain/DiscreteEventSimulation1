@@ -59,3 +59,7 @@ double Process::calculateProcessor(StatisticsIn stdIn){
 	double num = dist.determineDistribution(service, servInter[0], servInter[1]);
     return num;
 }
+
+void Process::printProcess(){
+    cout << "PID: " << id << " Clock: " << clock << " Time Processor: " << timeProcessor << " Time Processing: " << timeProcessing << " Quantum: " << quantum << endl;
+}

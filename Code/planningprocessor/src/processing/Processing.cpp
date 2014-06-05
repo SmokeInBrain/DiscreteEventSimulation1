@@ -141,6 +141,9 @@ void Processing::setProcessFinish(int processFinish){
 
 int Processing::activityArrivalProcess(Event eventCurrent, Process processArrival)
 {
+    //cout << "[Process Arrival] ";
+    //processArrival.printProcess();
+
     if(condProcessCPU)
     {
         largeQueue++;                                                           //Increment queue
@@ -175,6 +178,9 @@ int Processing::activityProcessCPU(Event eventCurrent)
     double timeRP = eventCurrent.getTime() - clock;
 
     Process processAnalyzed = processCPU;
+
+    //cout << "[Process CPU] ";
+    //processAnalyzed.printProcess();
 
     if(largeQueue != 0)
     {
@@ -236,7 +242,10 @@ int Processing::activityProcessCPU(Event eventCurrent)
     }
     else
     {
-        processIO.insertProcess(processAnalyzed);                           //Else, this process insert list IO
+        //cout << "[Process Analyzed] ";
+        //processAnalyzed.printProcess();
+
+        processIO.insertProcess(processAnalyzed);
         Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
         eventList.insertEvent(eventRIO);
 
@@ -251,8 +260,18 @@ int Processing::activityProcessCPU(Event eventCurrent)
 
 int Processing::activityProcessIO(Event eventCurrent)
 {
+
+        //cout << endl;
+        //cout << "[List IO] ";
+        //processIO.printAllList();                          //Else, this process insert list IO
+        //cout << endl;
+
+
     Process processCurrentIO = processIO.extractProcessIO(eventCurrent.getIdProcess());  //Determinate process IO to extract
     processCurrentIO.setClock(eventCurrent.getTime());                                     //Switch clock of process
+
+    //cout << "[Process IO]: " << endl;
+    //processCurrentIO.printProcess();
 
     //Insert process IO in the queue
     if(condProcessCPU)
@@ -286,14 +305,22 @@ bool Processing::planificationProcess(File file)
     while(true)
     {
 
+        //cout << "Queue" << endl;
+        //processQueue.printAllList();
+        //cout << "List IO" << endl;
+        //processIO.printAllList();
+        /*cout << "Process CPU ";
+        processCPU.printProcess();*/
+
         Event eventCurrent = eventList.extractEvent();
+
 
         file.Log(eventCurrent);
 
         if(eventCurrent.getTypeEvent() == "Arrival")
         {
             eventList.setNumEventArrival(eventList.getNumEventArrival()+1);                                                              //Increment number of arrival in the system
-            Process arrivalProcess = Process(eventList.getNumEventArrival()+1, stdIn.getQuantum(), eventCurrent.getTime(), this->stdIn); //Create process arrival
+            Process arrivalProcess = Process(eventList.getNumEventArrival(), stdIn.getQuantum(), eventCurrent.getTime(), this->stdIn); //Create process arrival
 
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }

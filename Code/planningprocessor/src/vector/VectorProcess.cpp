@@ -71,8 +71,16 @@ Process VectorProcess::extractProcess()
 
 Process VectorProcess::extractProcessIO(int id)
 {
-    Process extractProcessIO = listProcess[id];
-    listProcess.erase( listProcess.begin() + id );
+    int i;
+
+    for (i = 0; i < listProcess.size(); i++)
+    {
+        if (listProcess[i].getId() == id)
+            break;
+    }
+
+    Process extractProcessIO = listProcess[i];
+    listProcess.erase( listProcess.begin() + i );
 
     return extractProcessIO;
 }
