@@ -293,7 +293,7 @@ bool Processing::planificationProcess(File file)
         if(eventCurrent.getTypeEvent() == "Arrival")
         {
             eventList.setNumEventArrival(eventList.getNumEventArrival()+1);                                                              //Increment number of arrival in the system
-            Process arrivalProcess = Process(eventList.getNumEventArrival()+1, stdIn.getQuantum(), eventCurrent.getTime()); //Create process arrival
+            Process arrivalProcess = Process(eventList.getNumEventArrival()+1, stdIn.getQuantum(), eventCurrent.getTime(), this->stdIn); //Create process arrival
 
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }

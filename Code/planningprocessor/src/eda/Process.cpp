@@ -3,18 +3,18 @@
 Process::Process()
 {
     this->id = 0;
-    this->clock = 0;
-    this->timeProcessor = 0;
-    this->timeProcessing = 0;
-    this->quantum = 0;
+    this->clock = 0.0;
+    this->timeProcessor = 0.0;
+    this->timeProcessing = 0.0;
+    this->quantum = 0.0;
 }
 
-Process::Process(int id, double quantum, double clock)
+Process::Process(int id, double quantum, double clock, StatisticsIn stdIn)
 {
     //Datos
     this->id = id;
     this->clock = clock;
-    this->timeProcessor = calculateProcessor();
+    this->timeProcessor = calculateProcessor(stdIn);
     this->timeProcessing = 0;
     this->quantum = quantum;
 }
@@ -51,6 +51,11 @@ double Process::setQuantum(int quantum){
 	this->quantum=quantum;
 }
 
-double Process::calculateProcessor(){
-    return 10;
+double Process::calculateProcessor(StatisticsIn stdIn){
+	string service = stdIn.getService();
+	double *servInter = stdIn.getServiceInter();
+	Random random = Random();
+	Distribution dist = Distribution(random);
+	double num = dist.determineDistribution(service, servInter[0], servInter[1]);
+    return num;
 }
