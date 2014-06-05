@@ -1,6 +1,0 @@
-numproc 30
-algorithm FCFS
-interarrival uniforme 5 100
-servicio uniforme 1 500
-RP uniforme 5 20
-RIO uniforme 5 10
