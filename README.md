@@ -21,13 +21,17 @@ To set the parameters of the simulation must modified `input.txt` file that it i
 	interarrival [type] [number1] [number 2]: interarrival distribution
 		type: uniform, exponential
 		example: uniforme 1 10, exponential 100
+		note: At Uniform interarrival [number2] needs to be greater than [number1]
 	service [type] [number1] [number2]: service tiem distribution processes
 		type: uniform, exponential
+		note: At Uniform interarrival [number2] needs to be greater than [number1]
 	RP [type] [number1] [number2]: bursts of processor distribution
 		type: constant, uniform, normal, exponential
 		example: constant 5, normal 8, 16
+		note: At Uniform interarrival [number2] needs to be greater than [number1]
 	RIO [type] [number1] [number2]: bursts of I/O distribution
 		type: constant, uniform
+		note: At Uniform interarrival [number2] needs to be greater than [number1]
 
 Run simulation with custom parameter
 ------------------
