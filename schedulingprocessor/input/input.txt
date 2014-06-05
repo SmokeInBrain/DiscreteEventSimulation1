@@ -1,0 +1,6 @@
+numproc 
+algorithm 
+interarrival 
+servicio 
+RP 
+RIO 
