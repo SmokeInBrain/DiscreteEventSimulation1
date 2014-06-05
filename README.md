@@ -7,7 +7,7 @@ This code is based in the resolution of scheduling processor problem. Within whi
 Scheduling Problem Processor
 ------------------
 
-Just type `make simulation` then run it with './bin/planningProcessor.run'. This will execute the default instance of the problem: input/input Example.text which is the default parameter of the simulation.
+Just type `make simulation` then run it with `./bin/planningProcessor.run`. This will execute the default instance of the problem: input/input Example.text which is the default parameter of the simulation.
 
 Setting parameter in the simulation
 ------------------
