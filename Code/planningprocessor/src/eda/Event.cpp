@@ -1,11 +1,11 @@
 #include "eda/Event.h"
 
 
-Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, int clock)
+Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, double clock)
 {
     this->typeEvent = typeEvent;
     this->idProcess = idProcess;
-    
+
     Random random = Random();
     Distribution dist = Distribution(random);
 
@@ -38,7 +38,7 @@ Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, int clock)
 string Event::getTypeEvent(){
 	return this->typeEvent;
 }
-int Event::getTime(){
+double Event::getTime(){
 	return this->time;
 }
 int Event::getIdProcess(){
@@ -48,7 +48,7 @@ int Event::getIdProcess(){
 void Event::setTypeEvent(string typeEvent){
 	this->typeEvent=typeEvent;
 }
-void Event::setTime(int time){
+void Event::setTime(double time){
 	this->time=time;
 }
 void Event::setIdProcess(int idProcess){

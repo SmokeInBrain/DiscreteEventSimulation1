@@ -7,7 +7,7 @@ class Process
 		//Attributes
             //Date
             int id;
-            int clock;
+            double clock;
             //Statistics
             float timeProcessor;    //Time that needs this process for finish
             float timeProcessing;   //Time that this process is in the CPU
@@ -15,21 +15,21 @@ class Process
     public:
         //Constructor
             Process();
-            Process(int id, double quantum, int clock);
+            Process(int id, double quantum, double clock);
             //GETTERS
             int getId();
-            int getClock();
+            double getClock();
             float getTimeProcessor();
             float getTimeProcessing();
             double getQuantum();
             //SETTERS
             void setId(int id);
-            void setClock(int clock);
-            void setTimeProcessor(int timeProcessor);
-            void setTimeProcessing(int timeProcessing);
+            void setClock(double clock);
+            void setTimeProcessor(double timeProcessor);
+            void setTimeProcessing(double timeProcessing);
             double setQuantum(int quantum);
 
-        
+
 
         //Methods
             float calculateProcessor();

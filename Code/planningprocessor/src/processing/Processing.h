@@ -13,7 +13,7 @@ class Processing{
             //Date global
             StatisticsIn stdIn;
 
-            int clock;
+            double clock;
 
             //System state
             int largeQueue;
@@ -27,9 +27,9 @@ class Processing{
             VectorEvent eventList;          //Future Event List
 
             //Cumulative Statistics Time
-            int timeAccumulatedQueue;
-            int timeAccumulatedCPU;
-            int timeAccumulatedIO;
+            double timeAccumulatedQueue;
+            double timeAccumulatedCPU;
+            double timeAccumulatedIO;
 
             //Cumulative Statistics Queue
             int largeAccumulatedQueue;
@@ -42,31 +42,31 @@ class Processing{
             Processing(StatisticsIn stdIn);
         //Getters
             StatisticsIn getStdIn();
-            int getClock();
+            double getClock();
             int getLargeQueue();
             bool getCondProcessCPU();
             VectorProcess getProcessQueue();
             Process getProcessCPU();
             VectorProcess getProcessIO();
             VectorEvent getEventList();
-            int getTimeAccumulatedQueue();
-            int getTimeAccumulatedCPU();
-            int getTimeAccumulatedIO();
+            double getTimeAccumulatedQueue();
+            double getTimeAccumulatedCPU();
+            double getTimeAccumulatedIO();
             int getLargeAccumulatedQueue();
             int getMaxLargeQueue();
             int getProcessFinish();
         //Setters
             void setStdIn(StatisticsIn stdIn);
-            void setClock(int clock);
+            void setClock(double clock);
             void setLargeQueue(int largeQueue);
             void setCondProcessCPU(bool condProcessCPU);
             void setProcessQueue(VectorProcess processQueue);
             void setProcessCPU(Process processCPU);
             void setProcessIO(VectorProcess processIO);
             void setEventList(VectorEvent eventList);
-            void setTimeAccumulatedQueue(int timeAccumulatedQueue);
-            void setTimeAccumulatedCPU(int timeAccumulatedCPU);
-            void setTimeAccumulatedIO(int timeAccumulatedIO);
+            void setTimeAccumulatedQueue(double timeAccumulatedQueue);
+            void setTimeAccumulatedCPU(double timeAccumulatedCPU);
+            void setTimeAccumulatedIO(double timeAccumulatedIO);
             void setLargeAccumulatedQueue(int largeAccumulatedQueue);
             void setMaxLargeQueue(int maxLargeQueue);
             void setProcessFinish(int processFinish);

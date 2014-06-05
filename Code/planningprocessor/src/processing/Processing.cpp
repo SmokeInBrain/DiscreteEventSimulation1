@@ -10,13 +10,18 @@ Processing::Processing(StatisticsIn stdIn)
 
     //Initialize condition of the system
     largeQueue = 0;
-    condProcessCPU = true;
+    condProcessCPU = false;
 
     //Initialize list in the system
 
     processQueue = VectorProcess(stdIn.getNumProc(), stdIn.getAlgorithm());
+    processCPU = Process();
+    processIO = VectorProcess(stdIn.getNumProc(), "FCFS");
 
-    Process firstProcess = Process(1, stdIn.getQuantum(), clock);
+    eventList = VectorEvent();
+    eventList.setNumEventArrival(0);
+
+    /*Process firstProcess = Process(1, stdIn.getQuantum(), clock);
     processCPU = firstProcess;
 
     processIO = VectorProcess(stdIn.getNumProc(), "FCFS");
@@ -32,7 +37,7 @@ Processing::Processing(StatisticsIn stdIn)
 
     //Initialize second Arrival
     Event secondEventArrival = Event("Arrival", 2, stdIn, clock);
-    eventList.insertEvent(secondEventArrival);
+    eventList.insertEvent(secondEventArrival);*/
 
     //Initialize statistics
     timeAccumulatedQueue = 0;
@@ -49,7 +54,7 @@ Processing::Processing(StatisticsIn stdIn)
 StatisticsIn Processing::getStdIn(){
     return this->stdIn;
 }
-int Processing::getClock(){
+double Processing::getClock(){
     return this->clock;
 }
 int Processing::getLargeQueue(){
@@ -70,13 +75,13 @@ VectorProcess Processing::getProcessIO(){
 VectorEvent Processing::getEventList(){
     return this->eventList;
 }
-int Processing::getTimeAccumulatedQueue(){
+double Processing::getTimeAccumulatedQueue(){
     return this->timeAccumulatedQueue;
 }
-int Processing::getTimeAccumulatedCPU(){
+double Processing::getTimeAccumulatedCPU(){
     return this->timeAccumulatedCPU;
 }
-int Processing::getTimeAccumulatedIO(){
+double Processing::getTimeAccumulatedIO(){
     return this->timeAccumulatedIO;
 }
 int Processing::getLargeAccumulatedQueue(){
@@ -92,7 +97,7 @@ int Processing::getProcessFinish(){
 void Processing::setStdIn(StatisticsIn stdIn){
     this->stdIn=stdIn;
 }
-void Processing::setClock(int clock){
+void Processing::setClock(double clock){
     this->clock=clock;
 }
 void Processing::setLargeQueue(int largeQueue){
@@ -113,13 +118,13 @@ void Processing::setProcessIO(VectorProcess processIO){
 void Processing::setEventList(VectorEvent eventList){
     this->eventList=eventList;
 }
-void Processing::setTimeAccumulatedQueue(int timeAccumulatedQueue){
+void Processing::setTimeAccumulatedQueue(double timeAccumulatedQueue){
     this->timeAccumulatedQueue=timeAccumulatedQueue;
 }
-void Processing::setTimeAccumulatedCPU(int timeAccumulatedCPU){
+void Processing::setTimeAccumulatedCPU(double timeAccumulatedCPU){
     this->timeAccumulatedCPU=timeAccumulatedCPU;
 }
-void Processing::setTimeAccumulatedIO(int timeAccumulatedIO){
+void Processing::setTimeAccumulatedIO(double timeAccumulatedIO){
     this->timeAccumulatedIO=timeAccumulatedIO;
 }
 void Processing::setLargeAccumulatedQueue(int largeAccumulatedQueue){
@@ -150,7 +155,7 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
     //Generate next arrival
     if(eventList.getNumEventArrival() < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
     {
-        Event nextArrival = Event("Arrival", eventList.getNumEventArrival(), stdIn, clock);   //Create next arrival
+        Event nextArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, clock);   //Create next arrival
         eventList.insertEvent(nextArrival);     //And insert in the FEL
     }
 
@@ -164,8 +169,8 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
 
 int Processing::activityProcessCPU(Event eventCurrent)
 {
-    int timeProcessCPU;
-    int timeRP = eventCurrent.getTime() - clock;
+    double timeProcessCPU;
+    double timeRP = eventCurrent.getTime() - clock;
 
     Process processAnalyzed = processCPU;
 
@@ -271,6 +276,10 @@ int Processing::activityProcessIO(Event eventCurrent)
 
 bool Processing::planificationProcess(File file)
 {
+    //Initialize first event of arrival
+    Event firstEventArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, clock);
+    firstEventArrival.setTime(0);
+    eventList.insertEvent(firstEventArrival);
 
     while(true)
     {

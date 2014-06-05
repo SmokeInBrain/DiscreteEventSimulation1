@@ -63,32 +63,32 @@ clean:
 run:
 	@ clear
 	@ echo "Execute"
-	@ ./bin/planningProcessor.run -i input/inputExample.txt -o output/outputExample.txt -l logput/logputExample.txt
+	@ ./bin/planningProcessor.run -i input/inputExample.txt -o output/outputExample.txt -l log/logExample.txt
 
 testProgram:
 	@ echo "Execute test"
-	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v1.txt -l logput/logput1v1.txt
-	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v2.txt -l logput/logput1v2.txt
-	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v3.txt -l logput/logput1v3.txt
-	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v4.txt -l logput/logput1v4.txt
-	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v5.txt -l logput/logput1v5.txt
+	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v1.txt -l log/log1v1.txt
+	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v2.txt -l log/log1v2.txt
+	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v3.txt -l log/log1v3.txt
+	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v4.txt -l log/log1v4.txt
+	@ ./bin/planningProcessor.run -i input/input1.txt -o output/output1v5.txt -l log/log1v5.txt
 
-	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v1.txt -l logput/logput2v1.txt
-	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v2.txt -l logput/logput2v2.txt
-	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v3.txt -l logput/logput2v3.txt
-	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v4.txt -l logput/logput2v4.txt
-	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v5.txt -l logput/logput2v5.txt
+	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v1.txt -l log/log2v1.txt
+	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v2.txt -l log/log2v2.txt
+	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v3.txt -l log/log2v3.txt
+	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v4.txt -l log/log2v4.txt
+	@ ./bin/planningProcessor.run -i input/input2.txt -o output/output2v5.txt -l log/log2v5.txt
 
-	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v1.txt -l logput/logput3v1.txt
-	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v2.txt -l logput/logput3v2.txt
-	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v3.txt -l logput/logput3v3.txt
-	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v4.txt -l logput/logput3v4.txt
-	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v5.txt -l logput/logput3v5.txt
+	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v1.txt -l log/log3v1.txt
+	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v2.txt -l log/log3v2.txt
+	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v3.txt -l log/log3v3.txt
+	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v4.txt -l log/log3v4.txt
+	@ ./bin/planningProcessor.run -i input/input3.txt -o output/output3v5.txt -l log/log3v5.txt
 
-	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v1.txt -l logput/logput4v1.txt
-	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v2.txt -l logput/logput4v2.txt
-	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v3.txt -l logput/logput4v3.txt
-	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v4.txt -l logput/logput4v4.txt
-	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v5.txt -l logput/logput4v5.txt
+	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v1.txt -l log/log4v1.txt
+	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v2.txt -l log/log4v2.txt
+	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v3.txt -l log/log4v3.txt
+	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v4.txt -l log/log4v4.txt
+	@ ./bin/planningProcessor.run -i input/input4.txt -o output/output4v5.txt -l log/log4v5.txt
 
 program: clean main run

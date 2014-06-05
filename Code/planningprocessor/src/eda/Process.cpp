@@ -9,7 +9,7 @@ Process::Process()
     this->quantum = 0;
 }
 
-Process::Process(int id, double quantum, int clock)
+Process::Process(int id, double quantum, double clock)
 {
     //Datos
     this->id = id;
@@ -22,7 +22,7 @@ Process::Process(int id, double quantum, int clock)
 int Process::getId(){
 	return this->clock;
 }
-int Process::getClock(){
+double Process::getClock(){
 	return this->clock;
 }
 float Process::getTimeProcessor(){
@@ -38,13 +38,13 @@ double Process::getQuantum(){
 void Process::setId(int id){
 	this->id=id;
 }
-void Process::setClock(int clock){
+void Process::setClock(double clock){
 	this->clock=clock;
 }
-void Process::setTimeProcessor(int timeProcessor){
+void Process::setTimeProcessor(double timeProcessor){
 	this->timeProcessor=timeProcessor;
 }
-void Process::setTimeProcessing(int timeProcessing){
+void Process::setTimeProcessing(double timeProcessing){
 	this->timeProcessing=timeProcessing;
 }
 double Process::setQuantum(int quantum){
@@ -52,5 +52,5 @@ double Process::setQuantum(int quantum){
 }
 
 float Process::calculateProcessor(){
-    return 0;
+    return 50;
 }

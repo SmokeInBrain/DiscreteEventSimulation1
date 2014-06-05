@@ -1,5 +1,5 @@
 #include "filereading/File.h"
-#include <iomanip> 
+#include <iomanip>
 
 using namespace std;
 
@@ -164,7 +164,7 @@ void File::readInput(){
 		}
 		inputFile >> name >> RIO >> RIOInter1;
 
-		
+
 		if(RIO=="uniforme"){
 			inputFile >> RIOInter2;
 
@@ -182,18 +182,16 @@ void File::readInput(){
 void File::writeOutput(){
 
 }
+
 void File::openLog(){
 	const char *nombre_log = this->log_name.c_str();
 	cout <<nombre_log<< endl;
 	ofs = new ofstream(nombre_log, ios::binary | ios::out);
 	*ofs <<setw(10)<<left<<"|PID"<<setw(15)<<left<<"|Event Type"<<setw(10)<<left<<"|Time|"<<endl;
 	*ofs <<"-------------------------------"<<endl;
-
-
-
 	//&this->ofs = ofst;
-
 }
+
 void File::Log(Event currentEvent){
 	*ofs <<setw(9)<<left<<"|"<<currentEvent.getIdProcess();
 	if(currentEvent.getTypeEvent()=="Arrival"){
@@ -213,8 +211,8 @@ void File::Log(Event currentEvent){
 	}
 	*ofs<<setw(4)<<left<<"|"<<currentEvent.getTime()<<"|\n";
 	*ofs <<"-------------------------------"<<endl;
-
 }
+
 void File::closeLog(){
 	ofs->close();
 }

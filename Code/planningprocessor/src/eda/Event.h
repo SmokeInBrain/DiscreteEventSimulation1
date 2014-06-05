@@ -13,22 +13,22 @@ class Event
 	private:
 		//Attributes
        	string typeEvent;
-        int time;
+        double time;
         int idProcess;
 
     public:
         //Constructor
-            Event(string typeEvent, int idProcess, StatisticsIn stdIn, int clock);
+            Event(string typeEvent, int idProcess, StatisticsIn stdIn, double clock);
             //GETTERS
             string getTypeEvent();
-            int getTime();
+            double getTime();
             int getIdProcess();
             //SETTERS
             void setTypeEvent(string typeEvent);
-            void setTime(int time);
+            void setTime(double time);
             void setIdProcess(int idProcess);
 
-        
+
 
         //Methods
             //bool finishEvent();
