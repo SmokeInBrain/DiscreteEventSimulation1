@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <iostream>
 #include "random/Distribution.h"
 
 Distribution::Distribution(Random random)
@@ -26,10 +27,17 @@ void Distribution::setRandom(Random random)
 
 double Distribution::uniform(double a, double b)
 {
- 	double u  = this->random.calcRandom();
-	double result = a+((b-a)*u);
+	if(a>=b){
+		cout<<"ERROR. Uniform[a,b] with a>=b. Correct the input and run again."<<endl;
+		exit(0);
+	}
+	else{
+ 		double u  = this->random.calcRandom();
+		double result = a+((b-a)*u);
+		return result;
+	}
 	
-	return result;
+	
 }	
 
 double Distribution::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)

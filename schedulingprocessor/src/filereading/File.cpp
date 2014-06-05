@@ -198,7 +198,7 @@ void File:: writeOutput(StatisticsOut stdOut){
 
 void File::openLog(){
 	const char *nombre_log = this->log_name.c_str();
-	cout <<nombre_log<< endl;
+	//cout <<nombre_log<< endl;
 	ofs = new ofstream(nombre_log, ios::binary | ios::out);
 	*ofs <<setw(10)<<left<<"|PID"<<setw(15)<<left<<"|Event Type"<<setw(10)<<left<<"|Time|"<<endl;
 	*ofs <<"-------------------------------"<<endl;
