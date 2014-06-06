@@ -216,9 +216,9 @@ double Processing::activityProcessCPU(Event eventCurrent)
     }
 
     //Increment processing time of the analyzed process
-    cout << "Time RP: " << timeRP ;
+    //cout << "Time RP: " << timeRP ;
     processAnalyzed.setTimeProcessing(processAnalyzed.getTimeProcessing() + timeRP);
-    processAnalyzed.printProcess();
+    //processAnalyzed.printProcess();
 
     if( math.roundZero(processAnalyzed.getTimeProcessor() - processAnalyzed.getTimeProcessing()) == 0 )     //If this process has not more time of processing, it finish
     {
@@ -233,20 +233,40 @@ double Processing::activityProcessCPU(Event eventCurrent)
     }
     else if(processQueue.getTypePriority() ==  "RR")                             //If the queue is Round-Robin, then it is necessary analyzed its quantum
     {
-        if( processAnalyzed.getQuantum() < timeRP)                              //If the quantum is minor to the time processing in CPU
+        if( math.roundZero(processAnalyzed.getQuantum() - timeRP ) == 0 )                              //If the quantum is minor to the time processing in CPU
         {
+            //Insert process CPU with quantum in the queue
             processAnalyzed.setClock(eventCurrent.getTime());                      //Switch clock of process
-            processQueue.insertProcess(processAnalyzed);                    //Insert process in queue
+            processAnalyzed.setQuantum(stdIn.getQuantum());                         //Setting new quantum
 
-            largeQueue++;                                                   //Increment queue
-            if(maxLargeQueue < largeQueue)                                  //Statistics queue
+            if(condProcessCPU)
+            {
+                largeQueue++;
+                processQueue.insertProcess(processAnalyzed);                    //Insert process in queue
+            }
+            else
+            {
+                condProcessCPU = true;                                                 //Setting process CPU
+                processCPU = processAnalyzed;
+                Event nextRP = Event("RP", processAnalyzed.getId(), stdIn, processAnalyzed.getClock());      //Create next RP in the system
+                nextRP.validateRP(processCPU, eventCurrent.getTime());
+                eventList.insertEvent(nextRP);
+            }
+
+            //Statistics general
+            if(maxLargeQueue < largeQueue)
                 maxLargeQueue = largeQueue;
 
             //timeProcessCPU = processAnalyzed.getQuantum();
         }
-        else
+        else                                                                        //Else, this process insert list IO
         {
-            processIO.insertProcess(processAnalyzed);                       //Else, this process insert list IO
+            //Statistics
+            processAnalyzed.setClock(eventCurrent.getTime());
+            processAnalyzed.setQuantum( processAnalyzed.getQuantum() - timeRP );
+
+            //Insert I/O
+            processIO.insertProcess(processAnalyzed);
             Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
             eventList.insertEvent(eventRIO);
 
@@ -257,6 +277,7 @@ double Processing::activityProcessCPU(Event eventCurrent)
     {
         //cout << "[Process Analyzed] ";
         //processAnalyzed.printProcess();
+        processAnalyzed.setClock(eventCurrent.getTime());
 
         processIO.insertProcess(processAnalyzed);
         Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
@@ -282,6 +303,10 @@ double Processing::activityProcessIO(Event eventCurrent)
     //cout << endl;
 
     Process processCurrentIO = processIO.extractProcessIO(eventCurrent.getIdProcess());  //Determinate process IO to extract
+    //Statistics IO
+    timeAccumulatedIO += eventCurrent.getTime() - processCurrentIO.getClock();
+
+    //Setting clock process
     processCurrentIO.setClock(eventCurrent.getTime());                                     //Switch clock of process
 
     //cout << "[Process IO]: " << endl;

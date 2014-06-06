@@ -21,7 +21,7 @@ int main(int argc, char * argv[])
     Processing processing = Processing(file.getStdIn());
 
     if(processing.planificationProcess(file)){
-        StatisticsOut stdOut = StatisticsOut(processing.getClock(), processing.getTimeAccumulatedQueue(), processing.getTimeAccumulatedCPU(), processing.getTimeAccumulatedQueue(), processing.getProcessFinish(), processing.getMaxLargeQueue(), processing.getLargeAccumulatedQueue());
+        StatisticsOut stdOut = StatisticsOut(processing.getClock(), processing.getTimeAccumulatedQueue(), processing.getTimeAccumulatedCPU(), processing.getTimeAccumulatedIO(), processing.getProcessFinish(), processing.getMaxLargeQueue(), processing.getLargeAccumulatedQueue());
         file.writeOutput(stdOut);
         cout<<"True";
     }else{

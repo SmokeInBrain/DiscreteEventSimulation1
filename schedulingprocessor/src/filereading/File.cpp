@@ -188,8 +188,8 @@ void File:: writeOutput(StatisticsOut stdOut){
 	*ofs << "Processor utilization: " << stdOut.getThroughputTime() << endl;
 	*ofs << "Total idle processor time: " << stdOut.getIdleTime() << endl;
 	*ofs << "Average wait time in queue of ready: " << stdOut.getQueueTime() << endl;
-	*ofs << "Average time of I/O: " << stdOut.getProcessTime() << endl;
-	*ofs << "Average residence time (TAT): " << stdOut.getIOTime() << endl;
+	*ofs << "Average time of I/O: " << stdOut.getIOTime() << endl;
+	*ofs << "Average residence time (TAT): " << stdOut.getProcessTime() << endl;
 	*ofs << "Maximum length of the ready queue: " << stdOut.getQueueMaxLength() << endl;
 	*ofs << "Average length of the ready queue: " << stdOut.getQueueAvgLength() << endl;
 
@@ -198,7 +198,7 @@ void File:: writeOutput(StatisticsOut stdOut){
 
 void File::openLog(){
 	const char *nombre_log = this->log_name.c_str();
-	//cout <<nombre_log<< endl;
+	cout <<nombre_log<< endl;
 	ofs = new ofstream(nombre_log, ios::binary | ios::out);
 	*ofs <<setw(10)<<left<<"|PID"<<setw(15)<<left<<"|Event Type"<<setw(10)<<left<<"|Time|"<<endl;
 	*ofs <<"-------------------------------"<<endl;

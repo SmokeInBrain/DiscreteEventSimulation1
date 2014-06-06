@@ -58,12 +58,21 @@ void Event::setIdProcess(int idProcess){
 void Event::validateRP(Process processCPU, double clock)
 {
     double timeRP = time - clock;
-    double timeMissingProcessor = processCPU.getTimeProcessor() - processCPU.getTimeProcessing();
+    double timeMissingProcessing = processCPU.getTimeProcessor() - processCPU.getTimeProcessing();
 
-    if( timeMissingProcessor < timeRP )
+    if(processCPU.getQuantum() == 0)                //If process hasn't quantum
     {
-        time = timeMissingProcessor + clock;
-        cout << "Time Missing Processor: " << timeMissingProcessor << " Clock: " << clock << endl;
-     }
+        if( timeMissingProcessing < timeRP )
+            time = timeMissingProcessing + clock;
+    }
+    else                                            //If process has quantum
+    {
+        if ( processCPU.getQuantum() < timeRP )
+            if ( timeMissingProcessing < processCPU.getQuantum() )
+                time = timeMissingProcessing + clock;
+            else
+                time = processCPU.getQuantum() + clock;
+    }
+
 
 }

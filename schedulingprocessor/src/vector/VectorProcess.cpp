@@ -44,7 +44,7 @@ void VectorProcess::insertProcess(Process process)
     if (typePriority == "FCFS")
         listProcess.push_back(process);
 
-    else if (typePriority == "STF")
+    else if (typePriority == "SJF")
     {
 
         int position = 0;
@@ -71,16 +71,18 @@ Process VectorProcess::extractProcess()
 
 Process VectorProcess::extractProcessIO(int id)
 {
-    int i;
 
-    for (i = 0; i < listProcess.size(); i++)
+    int position = 0;
+    for (unsigned int i = 0; i < listProcess.size(); i++)
     {
-        if (listProcess[i].getId() == id)
+        if (listProcess[i].getId() == id){
+            position = i;
             break;
+        }
     }
 
-    Process extractProcessIO = listProcess[i];
-    listProcess.erase( listProcess.begin() + i );
+    Process extractProcessIO = listProcess[position];
+    listProcess.erase( listProcess.begin() + position );
 
     return extractProcessIO;
 }
