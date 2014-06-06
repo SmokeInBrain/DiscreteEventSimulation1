@@ -36,6 +36,8 @@
 		</Compiler>
 		<Unit filename="Makefile" />
 		<Unit filename="input/inputExample.txt" />
+		<Unit filename="log/logExample.txt" />
+		<Unit filename="output/outputExample.txt" />
 		<Unit filename="src/eda/Event.cpp" />
 		<Unit filename="src/eda/Event.h" />
 		<Unit filename="src/eda/Process.cpp" />
@@ -49,8 +51,8 @@
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/processing/Processing.cpp" />
 		<Unit filename="src/processing/Processing.h" />
-		<Unit filename="src/random/Distribution.cpp" />
-		<Unit filename="src/random/Distribution.h" />
+		<Unit filename="src/random/Math.cpp" />
+		<Unit filename="src/random/Math.h" />
 		<Unit filename="src/random/Random.cpp" />
 		<Unit filename="src/random/Random.h" />
 		<Unit filename="src/vector/VectorEvent.cpp" />
