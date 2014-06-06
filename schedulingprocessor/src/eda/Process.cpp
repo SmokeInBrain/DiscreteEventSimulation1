@@ -55,7 +55,7 @@ double Process::calculateProcessor(StatisticsIn stdIn){
 	string service = stdIn.getService();
 	double *servInter = stdIn.getServiceInter();
 	Random random = Random();
-	Distribution dist = Distribution(random);
+	Math dist = Math(random);
 	double num = dist.determineDistribution(service, servInter[0], servInter[1]);
     return num;
 }

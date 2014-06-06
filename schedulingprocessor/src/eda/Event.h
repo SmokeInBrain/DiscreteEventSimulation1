@@ -1,9 +1,10 @@
 #ifndef EVENT_H_INCLUDED
 #define EVENT_H_INCLUDED
 
+#include "eda/Process.h"
 #include "eda/StatisticsIn.h"
 #include "random/Random.h"
-#include "random/Distribution.h"
+#include "random/Math.h"
 #include <string>
 
 using namespace std;
@@ -28,9 +29,8 @@ class Event
             void setTime(double time);
             void setIdProcess(int idProcess);
 
-
-
         //Methods
+            void validateRP(Process processCPU, double clock);
             //bool finishEvent();
 };
 

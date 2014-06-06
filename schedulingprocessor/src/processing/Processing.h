@@ -39,6 +39,9 @@ class Processing{
 
             int processFinish;
 
+            //Math
+            Math math;
+
     public:
         //Constructor
             Processing(StatisticsIn stdIn);
@@ -74,9 +77,9 @@ class Processing{
             void setProcessFinish(int processFinish);
 
         //Methods
-            int activityArrivalProcess(Event eventCurrent, Process processArrival);
-            int activityProcessCPU(Event eventCurrent);
-            int activityProcessIO(Event eventCurrent);
+            double activityArrivalProcess(Event eventCurrent, Process processArrival);
+            double activityProcessCPU(Event eventCurrent);
+            double activityProcessIO(Event eventCurrent);
             bool planificationProcess(File file);
 
 };

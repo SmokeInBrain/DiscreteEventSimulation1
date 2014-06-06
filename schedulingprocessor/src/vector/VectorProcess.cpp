@@ -50,7 +50,7 @@ void VectorProcess::insertProcess(Process process)
         int position = 0;
         for (unsigned int i = 0; i < listProcess.size(); i++)
         {
-            if (listProcess[i].getTimeProcessor() < process.getTimeProcessing())
+            if (listProcess[i].getTimeProcessing() < process.getTimeProcessing())
                 position++;
         }
 

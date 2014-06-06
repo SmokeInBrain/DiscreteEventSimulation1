@@ -1,31 +1,32 @@
-#include <stdlib.h>
+#include <cstdlib>
+#include <cmath>
 #include <iostream>
-#include "random/Distribution.h"
+#include "random/Math.h"
 
-Distribution::Distribution(Random random)
+Math::Math(Random random)
 {
 	this->random = random;
 	random.plantSeeds(1);
 }
 
 
-Distribution::Distribution()
+Math::Math()
 {
 	Random *p = &this->random;
 	p=NULL;
 }
 
-Random Distribution::getRandom()
+Random Math::getRandom()
 {
   	return this->random;
 }
 
-void Distribution::setRandom(Random random)
+void Math::setRandom(Random random)
 {
   	this->random = random;
 }
 
-double Distribution::uniform(double a, double b)
+double Math::uniform(double a, double b)
 {
 	if(a>=b){
 		cout<<"ERROR. Uniform[a,b] with a>=b. Correct the input and run again."<<endl;
@@ -36,11 +37,11 @@ double Distribution::uniform(double a, double b)
 		double result = a+((b-a)*u);
 		return result;
 	}
-	
-	
-}	
 
-double Distribution::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)
+
+}
+
+double Math::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)
 {
   double arrivalTime=0.0;
   if(interarrive=="exponencial"){
@@ -56,7 +57,7 @@ double Distribution::determineDistribution(string interarrive, double interarriv
   return arrivalTime;
 }
 
-double Distribution::normal(double mu, double desv)
+double Math::normal(double mu, double desv)
 {
   const double p0 = 0.322232431088;     const double q0 = 0.099348462606;
   const double p1 = 1.0;                const double q1 = 0.588581570495;
@@ -83,11 +84,21 @@ double Distribution::normal(double mu, double desv)
 }
 
 
-double Distribution::exponential(double lambda)
+double Math::exponential(double lambda)
 {
  	double u  = this->random.calcRandom();
 	double result = -lambda*log(1.0-u);
 
 	return result;
+}
+
+double Math::roundZero(double number)
+{
+    double tolerance = 1e-13;
+
+    if(abs(number)<tolerance)
+        return 0;
+    else
+        return number;
 }
 

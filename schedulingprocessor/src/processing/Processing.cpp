@@ -51,6 +51,9 @@ Processing::Processing(StatisticsIn stdIn)
 
     processFinish = 0;
 
+    //Initialize Math
+    math = Math();
+
 }
 //Getters
 StatisticsIn Processing::getStdIn(){
@@ -139,10 +142,10 @@ void Processing::setProcessFinish(int processFinish){
     this->processFinish=processFinish;
 }
 
-int Processing::activityArrivalProcess(Event eventCurrent, Process processArrival)
+double Processing::activityArrivalProcess(Event eventCurrent, Process processArrival)
 {
     //Statistics initial
-    largeAccumulatedQueue = largeQueue * (eventCurrent.getTime() - clock);
+    largeAccumulatedQueue += largeQueue * (eventCurrent.getTime() - clock);
 
     //cout << "[Process Arrival] ";
     //processArrival.printProcess();
@@ -157,6 +160,7 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
         condProcessCPU = true;                                                 //Setting process CPU
         processCPU = processArrival;
         Event nextRP = Event("RP", eventCurrent.getIdProcess(), stdIn, eventCurrent.getTime());      //Create next RP in the system
+        nextRP.validateRP(processCPU, processCPU.getClock());
         eventList.insertEvent(nextRP);                                         //Insert event RP in FEL
     }
 
@@ -175,15 +179,15 @@ int Processing::activityArrivalProcess(Event eventCurrent, Process processArriva
     return eventCurrent.getTime();
 }
 
-int Processing::activityProcessCPU(Event eventCurrent)
+double Processing::activityProcessCPU(Event eventCurrent)
 {
-    double timeProcessCPU;
-    double timeRP = eventCurrent.getTime() - clock;
-
     Process processAnalyzed = processCPU;
 
+    //double timeProcessCPU;
+    double timeRP = eventCurrent.getTime() - processAnalyzed.getClock();
+
     //Statistics initial
-    largeAccumulatedQueue = largeQueue * (eventCurrent.getTime() - clock);
+    largeAccumulatedQueue += largeQueue * (eventCurrent.getTime() - clock);
 
     //cout << "[Process CPU] ";
     //processAnalyzed.printProcess();
@@ -198,6 +202,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
         processCPU = processFirstQueue;
         processCPU.setClock(eventCurrent.getTime());
         Event nextRP = Event("RP", processFirstQueue.getId(), stdIn, eventCurrent.getTime());
+        nextRP.validateRP(processCPU, processCPU.getClock());
         eventList.insertEvent(nextRP);                                              //And insert in the FEL
 
         //Statistics
@@ -211,11 +216,13 @@ int Processing::activityProcessCPU(Event eventCurrent)
     }
 
     //Increment processing time of the analyzed process
-    processAnalyzed.setTimeProcessing(processAnalyzed.getTimeProcessing() + (eventCurrent.getTime() - clock));
+    cout << "Time RP: " << timeRP ;
+    processAnalyzed.setTimeProcessing(processAnalyzed.getTimeProcessing() + timeRP);
+    processAnalyzed.printProcess();
 
-    if(processAnalyzed.getTimeProcessor() <= processAnalyzed.getTimeProcessing())     //If this process has not more time of processing, it finish
+    if( math.roundZero(processAnalyzed.getTimeProcessor() - processAnalyzed.getTimeProcessing()) == 0 )     //If this process has not more time of processing, it finish
     {
-        timeProcessCPU = timeRP - (processAnalyzed.getTimeProcessing() - processAnalyzed.getTimeProcessor());
+        //timeProcessCPU = timeRP - (processAnalyzed.getTimeProcessing() - processAnalyzed.getTimeProcessor());
         processFinish++;                                                    //Increment number of process finish
 
         if(processFinish == stdIn.getNumProc())
@@ -235,7 +242,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
             if(maxLargeQueue < largeQueue)                                  //Statistics queue
                 maxLargeQueue = largeQueue;
 
-            timeProcessCPU = processAnalyzed.getQuantum();
+            //timeProcessCPU = processAnalyzed.getQuantum();
         }
         else
         {
@@ -243,7 +250,7 @@ int Processing::activityProcessCPU(Event eventCurrent)
             Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
             eventList.insertEvent(eventRIO);
 
-            timeProcessCPU = timeRP;
+            //timeProcessCPU = timeRP;
         }
     }
     else
@@ -255,19 +262,19 @@ int Processing::activityProcessCPU(Event eventCurrent)
         Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
         eventList.insertEvent(eventRIO);
 
-        timeProcessCPU = timeRP;
+        //timeProcessCPU = timeRP;
     }
 
     //Statistics final
-    timeAccumulatedCPU += timeProcessCPU;
+    timeAccumulatedCPU += timeRP;
 
     return eventCurrent.getTime();
 }
 
-int Processing::activityProcessIO(Event eventCurrent)
+double Processing::activityProcessIO(Event eventCurrent)
 {
     //Statistics initial
-    largeAccumulatedQueue = largeQueue * (eventCurrent.getTime() - clock);
+    largeAccumulatedQueue += largeQueue * (eventCurrent.getTime() - clock);
 
     //cout << endl;
     //cout << "[List IO] ";
@@ -291,6 +298,7 @@ int Processing::activityProcessIO(Event eventCurrent)
         condProcessCPU = true;                                                 //Setting process CPU
         processCPU = processCurrentIO;
         Event nextRP = Event("RP", eventCurrent.getIdProcess(), stdIn, eventCurrent.getTime());      //Create next RP in the system
+        nextRP.validateRP(processCPU, eventCurrent.getTime());
         eventList.insertEvent(nextRP);                                         //Insert event RP in FEL
     }
 

@@ -1,9 +1,12 @@
 #ifndef PROCESS_H
 #define PROCESS_H
-#include "eda/StatisticsIn.h"
-#include "random/Distribution.h"
+
 #include <string>
 #include <iostream>
+
+#include "eda/StatisticsIn.h"
+#include "random/Math.h"
+
 
 using namespace std;
 class Process

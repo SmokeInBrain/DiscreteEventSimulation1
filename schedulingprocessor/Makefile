@@ -6,7 +6,7 @@ INC_DIRS = -Isrc
 
 CFLAGS = -c -w
 
-main: build/main.o build/Event.o build/Process.o build/StatisticsIn.o build/StatisticsOut.o build/File.o build/Processing.o build/Distribution.o build/Random.o build/VectorEvent.o build/VectorProcess.o
+main: build/main.o build/Event.o build/Process.o build/StatisticsIn.o build/StatisticsOut.o build/File.o build/Processing.o build/Math.o build/Random.o build/VectorEvent.o build/VectorProcess.o
 	@ g++ build/*.o -o bin/planningProcessor.run
 	@ echo "The compilation has been completed successfully"
 
@@ -38,9 +38,9 @@ build/Processing.o: src/processing/Processing.cpp
 	@ echo " src/processing/Processing.cpp"
 	@ g++ $(CFLAGS) $(INC_DIRS) src/processing/Processing.cpp -o build/Processing.o
 
-build/Distribution.o: src/random/Distribution.cpp
-	@ echo " src/random/Distribution.cpp"
-	@ g++ $(CFLAGS) $(INC_DIRS) src/random/Distribution.cpp -o build/Distribution.o
+build/Math.o: src/random/Math.cpp
+	@ echo " src/random/Math.cpp"
+	@ g++ $(CFLAGS) $(INC_DIRS) src/random/Math.cpp -o build/Math.o
 
 build/Random.o: src/random/Random.cpp
 	@ echo " src/random/Random.cpp"

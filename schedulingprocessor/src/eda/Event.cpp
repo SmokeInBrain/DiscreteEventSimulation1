@@ -1,13 +1,12 @@
 #include "eda/Event.h"
 
-
 Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, double clock)
 {
     this->typeEvent = typeEvent;
     this->idProcess = idProcess;
 
     Random random = Random();
-    Distribution dist = Distribution(random);
+    Math dist = Math(random);
 
     string interarrivo = stdIn.getInterarrive();
     double *interarrivoInter = stdIn.getInterarriveInter();
@@ -53,4 +52,18 @@ void Event::setTime(double time){
 }
 void Event::setIdProcess(int idProcess){
 	this->idProcess=idProcess;
+}
+
+//Methods
+void Event::validateRP(Process processCPU, double clock)
+{
+    double timeRP = time - clock;
+    double timeMissingProcessor = processCPU.getTimeProcessor() - processCPU.getTimeProcessing();
+
+    if( timeMissingProcessor < timeRP )
+    {
+        time = timeMissingProcessor + clock;
+        cout << "Time Missing Processor: " << timeMissingProcessor << " Clock: " << clock << endl;
+     }
+
 }
