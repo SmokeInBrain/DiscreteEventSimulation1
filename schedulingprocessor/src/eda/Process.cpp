@@ -9,12 +9,12 @@ Process::Process()
     this->quantum = 0.0;
 }
 
-Process::Process(int id, double quantum, double clock, StatisticsIn stdIn)
+Process::Process(int id, double quantum, double clock, StatisticsIn stdIn, Math dist)
 {
     //Datos
     this->id = id;
     this->clock = clock;
-    this->timeProcessor = calculateProcessor(stdIn);
+    this->timeProcessor = calculateProcessor(stdIn, dist);
     this->timeProcessing = 0;
     this->quantum = quantum;
 }
@@ -51,12 +51,13 @@ void Process::setQuantum(double quantum){
 	this->quantum=quantum;
 }
 
-double Process::calculateProcessor(StatisticsIn stdIn){
+double Process::calculateProcessor(StatisticsIn stdIn, Math dist){
 	string service = stdIn.getService();
 	double *servInter = stdIn.getServiceInter();
-	Random random = Random();
-	Math dist = Math(random);
+
 	double num = dist.determineDistribution(service, servInter[0], servInter[1]);
+	cout << "Random num: " << num << endl;
+
     return num;
 }
 

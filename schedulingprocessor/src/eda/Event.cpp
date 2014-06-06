@@ -5,8 +5,7 @@ Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, double clock)
     this->typeEvent = typeEvent;
     this->idProcess = idProcess;
 
-    Random random = Random();
-    Math dist = Math(random);
+    Math dist = Math();
 
     string interarrivo = stdIn.getInterarrive();
     double *interarrivoInter = stdIn.getInterarriveInter();
@@ -18,6 +17,7 @@ Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, double clock)
 
     if(typeEvent == "Arrival"){
     	double distArrival = dist.determineDistribution(interarrivo, interarrivoInter[0], interarrivoInter[1]);
+    	//cout << "distArrival: " << distArrival << endl;
     	this->time = clock + distArrival;
     }
     else if(typeEvent == "RP"){
@@ -67,11 +67,12 @@ void Event::validateRP(Process processCPU, double clock)
     }
     else                                            //If process has quantum
     {
-        if ( processCPU.getQuantum() < timeRP )
+        if ( processCPU.getQuantum() < timeRP ){
             if ( timeMissingProcessing < processCPU.getQuantum() )
                 time = timeMissingProcessing + clock;
             else
                 time = processCPU.getQuantum() + clock;
+        }
     }
 
 

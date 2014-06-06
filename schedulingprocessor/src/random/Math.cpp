@@ -1,19 +1,15 @@
 #include <cstdlib>
 #include <cmath>
-#include <iostream>
 #include "random/Math.h"
 
-Math::Math(Random random)
-{
-	this->random = random;
-	random.plantSeeds(1);
-}
+#include <iostream>
+using namespace std;
 
+Random Math::random = Random();
 
 Math::Math()
 {
-	Random *p = &this->random;
-	p=NULL;
+	//random.plantSeeds(1);
 }
 
 Random Math::getRandom()
@@ -41,22 +37,6 @@ double Math::uniform(double a, double b)
 
 }
 
-double Math::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)
-{
-  double arrivalTime=0.0;
-  if(interarrive=="exponencial"){
-    arrivalTime = exponential(interarriveInter1);
-  }else if(interarrive=="uniforme"){
-    arrivalTime = uniform(interarriveInter1,interarriveInter2);
-  }else if(interarrive=="normal"){
-    arrivalTime = normal(interarriveInter1,interarriveInter2);
-  }else if(interarrive=="constante"){
-    arrivalTime = interarriveInter1;
-  }
-
-  return arrivalTime;
-}
-
 double Math::normal(double mu, double desv)
 {
   const double p0 = 0.322232431088;     const double q0 = 0.099348462606;
@@ -65,8 +45,8 @@ double Math::normal(double mu, double desv)
   const double p3 = 0.204231210245e-1;  const double q3 = 0.103537752850;
   const double p4 = 0.453642210148e-4;  const double q4 = 0.385607006340e-2;
   double u, t, p, q, z;
-  long x;
- 	u  = this->random.calcRandom();
+
+  u  = this->random.calcRandom();
 
   if (u < 0.5)
     t = sqrt(-2.0 * log(u));
@@ -92,9 +72,26 @@ double Math::exponential(double lambda)
 	return result;
 }
 
+
+double Math::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)
+{
+  double arrivalTime=0.0;
+  if(interarrive=="exponencial"){
+    arrivalTime = exponential(interarriveInter1);
+  }else if(interarrive=="uniforme"){
+    arrivalTime = uniform(interarriveInter1,interarriveInter2);
+  }else if(interarrive=="normal"){
+    arrivalTime = normal(interarriveInter1,interarriveInter2);
+  }else if(interarrive=="constante"){
+    arrivalTime = interarriveInter1;
+  }
+
+  return arrivalTime;
+}
+
 double Math::roundZero(double number)
 {
-    double tolerance = 1e-13;
+    double tolerance = 1e-7;
 
     if(abs(number)<tolerance)
         return 0;

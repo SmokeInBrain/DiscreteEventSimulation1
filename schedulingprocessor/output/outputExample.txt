@@ -1,8 +1,8 @@
-Total time of simulation: 2000.04
+Total time of simulation: 18978.5
 Processor utilization: 1
-Total idle processor time: 1999.04
-Average wait time in queue of ready: 0.00202301
+Total idle processor time: 18977.5
+Average wait time in queue of ready: 900.454
 Average time of I/O: 0
-Average residence time (TAT): 100.002
+Average residence time (TAT): 948.923
 Maximum length of the ready queue: 19
-Average length of the ready queue: 18.9436
+Average length of the ready queue: 9.53228

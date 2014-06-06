@@ -7,10 +7,9 @@
 class Math{
 
     private:
-        Random random;
+        static Random random;
 
     public:
-        Math(Random random);
         Math();
         Random getRandom();
         void setRandom(Random random);

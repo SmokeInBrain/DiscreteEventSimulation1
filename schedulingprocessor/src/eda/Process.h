@@ -24,7 +24,7 @@ class Process
     public:
         //Constructor
             Process();
-            Process(int id, double quantum, double clock, StatisticsIn stdIn);
+            Process(int id, double quantum, double clock, StatisticsIn stdIn, Math dist);
             //GETTERS
             int getId();
             double getClock();
@@ -39,7 +39,7 @@ class Process
             void setQuantum(double quantum);
 
         //Methods
-            double calculateProcessor(StatisticsIn stdIn);
+            double calculateProcessor(StatisticsIn stdIn, Math dist);
             void printProcess();
 };
 

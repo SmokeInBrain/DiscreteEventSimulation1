@@ -52,6 +52,7 @@ Processing::Processing(StatisticsIn stdIn)
     processFinish = 0;
 
     //Initialize Math
+    //random = Random();
     math = Math();
 
 }
@@ -168,6 +169,7 @@ double Processing::activityArrivalProcess(Event eventCurrent, Process processArr
     if(eventList.getNumEventArrival() < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
     {
         Event nextArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, clock);   //Create next arrival
+        //cout << "Clock: " << clock << " | ClockArrival: " << nextArrival.getTime() << endl;
         eventList.insertEvent(nextArrival);                                                     //And insert in the FEL
     }
 
@@ -220,6 +222,7 @@ double Processing::activityProcessCPU(Event eventCurrent)
     processAnalyzed.setTimeProcessing(processAnalyzed.getTimeProcessing() + timeRP);
     //processAnalyzed.printProcess();
 
+    //cout << processAnalyzed.getTimeProcessor() - processAnalyzed.getTimeProcessing() << endl;
     if( math.roundZero(processAnalyzed.getTimeProcessor() - processAnalyzed.getTimeProcessing()) == 0 )     //If this process has not more time of processing, it finish
     {
         //timeProcessCPU = timeRP - (processAnalyzed.getTimeProcessing() - processAnalyzed.getTimeProcessor());
@@ -360,7 +363,7 @@ bool Processing::planificationProcess(File file)
         if(eventCurrent.getTypeEvent() == "Arrival")
         {
             eventList.setNumEventArrival(eventList.getNumEventArrival()+1);                                                              //Increment number of arrival in the system
-            Process arrivalProcess = Process(eventList.getNumEventArrival(), stdIn.getQuantum(), eventCurrent.getTime(), this->stdIn); //Create process arrival
+            Process arrivalProcess = Process(eventList.getNumEventArrival(), stdIn.getQuantum(), eventCurrent.getTime(), this->stdIn, math); //Create process arrival
 
             clock = activityArrivalProcess(eventCurrent, arrivalProcess);
         }

@@ -39,7 +39,8 @@ class Processing{
 
             int processFinish;
 
-            //Math
+            //Random
+            Random random;
             Math math;
 
     public:
