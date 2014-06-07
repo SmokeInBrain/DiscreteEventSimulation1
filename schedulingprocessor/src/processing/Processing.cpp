@@ -1,7 +1,5 @@
 #include "processing/Processing.h"
 
-#include <iostream>
-
 Processing::Processing(StatisticsIn stdIn)
 {
     //Initialize Statistics
@@ -15,7 +13,6 @@ Processing::Processing(StatisticsIn stdIn)
     condProcessCPU = false;
 
     //Initialize list in the system
-
     processQueue = VectorProcess(stdIn.getNumProc(), stdIn.getAlgorithm());
     processCPU = Process();
     processIO = VectorProcess(stdIn.getNumProc(), "FCFS");
@@ -23,23 +20,7 @@ Processing::Processing(StatisticsIn stdIn)
     eventList = VectorEvent();
     eventList.setNumEventArrival(0);
 
-    /*Process firstProcess = Process(1, stdIn.getQuantum(), clock);
-    processCPU = firstProcess;
-
-    processIO = VectorProcess(stdIn.getNumProc(), "FCFS");
-
-    //Initialize FEL
-    eventList = VectorEvent();
-
-    //Initialize first RP
-    Event firstEventRP = Event("RP", 1, stdIn, clock);
-    eventList.insertEvent(firstEventRP);
-
-    eventList.setNumEventArrival(1);                      //Setting arrival for default
-
-    //Initialize second Arrival
-    Event secondEventArrival = Event("Arrival", 2, stdIn, clock);
-    eventList.insertEvent(secondEventArrival);*/
+    eventLog = VectorEvent();
 
     //Initialize statistics
     timeAccumulatedQueue = 0;
@@ -52,7 +33,6 @@ Processing::Processing(StatisticsIn stdIn)
     processFinish = 0;
 
     //Initialize Math
-    //random = Random();
     math = Math();
 
 }
@@ -148,9 +128,6 @@ double Processing::activityArrivalProcess(Event eventCurrent, Process processArr
     //Statistics initial
     largeAccumulatedQueue += largeQueue * (eventCurrent.getTime() - clock);
 
-    //cout << "[Process Arrival] ";
-    //processArrival.printProcess();
-
     if(condProcessCPU)
     {
         largeQueue++;                                                           //Increment queue
@@ -169,7 +146,6 @@ double Processing::activityArrivalProcess(Event eventCurrent, Process processArr
     if(eventList.getNumEventArrival() < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
     {
         Event nextArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, eventCurrent.getTime());   //Create next arrival
-        //cout << "Clock: " << clock << " | ClockArrival: " << nextArrival.getTime() << endl;
         eventList.insertEvent(nextArrival);                                                     //And insert in the FEL
     }
 
@@ -190,9 +166,6 @@ double Processing::activityProcessCPU(Event eventCurrent)
 
     //Statistics initial
     largeAccumulatedQueue += largeQueue * (eventCurrent.getTime() - clock);
-
-    //cout << "[Process CPU] ";
-    //processAnalyzed.printProcess();
 
     if(largeQueue != 0)
     {
@@ -218,14 +191,10 @@ double Processing::activityProcessCPU(Event eventCurrent)
     }
 
     //Increment processing time of the analyzed process
-    //cout << "Time RP: " << timeRP ;
     processAnalyzed.setTimeProcessing(processAnalyzed.getTimeProcessing() + timeRP);
-    //processAnalyzed.printProcess();
 
-    //cout << processAnalyzed.getTimeProcessor() - processAnalyzed.getTimeProcessing() << endl;
     if( math.roundZero(processAnalyzed.getTimeProcessor() - processAnalyzed.getTimeProcessing()) == 0 )     //If this process has not more time of processing, it finish
     {
-        //timeProcessCPU = timeRP - (processAnalyzed.getTimeProcessing() - processAnalyzed.getTimeProcessor());
         processFinish++;                                                    //Increment number of process finish
 
         if(processFinish == stdIn.getNumProc())
@@ -240,7 +209,7 @@ double Processing::activityProcessCPU(Event eventCurrent)
         {
             //Insert process CPU with quantum in the queue
             processAnalyzed.setClock(eventCurrent.getTime());                      //Switch clock of process
-            processAnalyzed.setQuantum(stdIn.getQuantum());                         //Setting new quantum
+            //processAnalyzed.setQuantum(stdIn.getQuantum());                         //Setting new quantum
 
             if(condProcessCPU)
             {
@@ -260,33 +229,26 @@ double Processing::activityProcessCPU(Event eventCurrent)
             if(maxLargeQueue < largeQueue)
                 maxLargeQueue = largeQueue;
 
-            //timeProcessCPU = processAnalyzed.getQuantum();
         }
         else                                                                        //Else, this process insert list IO
         {
             //Statistics
             processAnalyzed.setClock(eventCurrent.getTime());
-            processAnalyzed.setQuantum( processAnalyzed.getQuantum() - timeRP );
+            //processAnalyzed.setQuantum( processAnalyzed.getQuantum() - timeRP );
 
             //Insert I/O
             processIO.insertProcess(processAnalyzed);
             Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
             eventList.insertEvent(eventRIO);
-
-            //timeProcessCPU = timeRP;
         }
     }
     else
     {
-        //cout << "[Process Analyzed] ";
-        //processAnalyzed.printProcess();
         processAnalyzed.setClock(eventCurrent.getTime());
 
         processIO.insertProcess(processAnalyzed);
         Event eventRIO = Event("RIO", processAnalyzed.getId(), stdIn, eventCurrent.getTime());
         eventList.insertEvent(eventRIO);
-
-        //timeProcessCPU = timeRP;
     }
 
     //Statistics final
@@ -300,10 +262,6 @@ double Processing::activityProcessIO(Event eventCurrent)
     //Statistics initial
     largeAccumulatedQueue += largeQueue * (eventCurrent.getTime() - clock);
 
-    //cout << endl;
-    //cout << "[List IO] ";
-    //processIO.printAllList();                          //Else, this process insert list IO
-    //cout << endl;
 
     Process processCurrentIO = processIO.extractProcessIO(eventCurrent.getIdProcess());  //Determinate process IO to extract
     //Statistics IO
@@ -311,9 +269,6 @@ double Processing::activityProcessIO(Event eventCurrent)
 
     //Setting clock process
     processCurrentIO.setClock(eventCurrent.getTime());                                     //Switch clock of process
-
-    //cout << "[Process IO]: " << endl;
-    //processCurrentIO.printProcess();
 
     //Insert process IO in the queue
     if(condProcessCPU)
@@ -348,15 +303,9 @@ bool Processing::planificationProcess(File file)
     while(true)
     {
 
-        //cout << "Queue" << endl;
-        //processQueue.printAllList();
-        //cout << "List IO" << endl;
-        //processIO.printAllList();
-        /*cout << "Process CPU ";
-        processCPU.printProcess();*/
-
         Event eventCurrent = eventList.extractEvent();
 
+        eventLog.insertEvent(eventCurrent);
 
         file.Log(eventCurrent);
 

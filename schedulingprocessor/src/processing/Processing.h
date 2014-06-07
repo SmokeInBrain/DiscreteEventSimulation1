@@ -27,6 +27,7 @@ class Processing{
             VectorProcess processIO;        //List of process in IO
 
             VectorEvent eventList;          //Future Event List
+            VectorEvent eventLog;           //Log Event List
 
             //Cumulative Statistics Time
             double timeAccumulatedQueue;

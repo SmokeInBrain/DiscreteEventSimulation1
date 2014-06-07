@@ -151,21 +151,21 @@ void File::readInput(){
 			inputFile >> quantum;
 		}
 		inputFile >> name >> interarrive >> interarriveInter1;
-		if(interarrive=="uniforme"){
+		if(interarrive=="uniform"){
 			inputFile >> interarriveInter2;
 		}
 		inputFile >> name >> service >> serviceInter1;
-		if(service=="uniforme"){
+		if(service=="uniform"){
 			inputFile >> serviceInter2;
 		}
 		inputFile >> name >> RP >> RPInter1;
-		if(RP=="uniforme" || RP=="normal"){
+		if(RP=="uniform" || RP=="normal"){
 			inputFile >> RPInter2;
 		}
 		inputFile >> name >> RIO >> RIOInter1;
 
 
-		if(RIO=="uniforme"){
+		if(RIO=="uniform"){
 			inputFile >> RIOInter2;
 
 		}

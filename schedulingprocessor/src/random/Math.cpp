@@ -7,10 +7,7 @@ using namespace std;
 
 Random Math::random = Random();
 
-Math::Math()
-{
-	//random.plantSeeds(1);
-}
+Math::Math(){}
 
 Random Math::getRandom()
 {
@@ -33,7 +30,6 @@ double Math::uniform(double a, double b)
 		double result = a+((b-a)*u);
 		return result;
 	}
-
 
 }
 
@@ -76,13 +72,13 @@ double Math::exponential(double lambda)
 double Math::determineDistribution(string interarrive, double interarriveInter1, double interarriveInter2)
 {
   double arrivalTime=0.0;
-  if(interarrive=="exponencial"){
+  if(interarrive=="exponential"){
     arrivalTime = exponential(interarriveInter1);
-  }else if(interarrive=="uniforme"){
+  }else if(interarrive=="uniform"){
     arrivalTime = uniform(interarriveInter1,interarriveInter2);
   }else if(interarrive=="normal"){
     arrivalTime = normal(interarriveInter1,interarriveInter2);
-  }else if(interarrive=="constante"){
+  }else if(interarrive=="constant"){
     arrivalTime = interarriveInter1;
   }
 

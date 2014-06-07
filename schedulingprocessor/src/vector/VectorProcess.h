@@ -1,7 +1,6 @@
 #ifndef VECTORPROCESS_H
 #define VECTORPROCESS_H
 
-#include <iostream>
 #include <string>
 #include <vector>
 

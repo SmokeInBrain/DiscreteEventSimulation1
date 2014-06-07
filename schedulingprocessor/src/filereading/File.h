@@ -6,7 +6,7 @@
 #include "eda/Event.h"
 
 #include <string>
-#include <stdlib.h>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <getopt.h>

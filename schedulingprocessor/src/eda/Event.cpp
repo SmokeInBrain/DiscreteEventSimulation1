@@ -17,7 +17,6 @@ Event::Event(string typeEvent, int idProcess, StatisticsIn stdIn, double clock)
 
     if(typeEvent == "Arrival"){
     	double distArrival = dist.determineDistribution(interarrivo, interarrivoInter[0], interarrivoInter[1]);
-    	//cout << "distArrival: " << distArrival << endl;
     	this->time = clock + distArrival;
     }
     else if(typeEvent == "RP"){

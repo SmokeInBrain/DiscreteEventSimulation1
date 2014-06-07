@@ -56,7 +56,6 @@ double Process::calculateProcessor(StatisticsIn stdIn, Math dist){
 	double *servInter = stdIn.getServiceInter();
 
 	double num = dist.determineDistribution(service, servInter[0], servInter[1]);
-	cout << "Random num: " << num << endl;
 
     return num;
 }

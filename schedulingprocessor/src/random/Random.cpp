@@ -1,9 +1,6 @@
 #include "random/Random.h"
 #include <cstdio>
 
-//#include <iostream>
-//using namespace std;
-
 long Random::seed[STREAMS]={DEFAULT};
 int Random::initialized =0;
 int Random::stream = 0;
@@ -23,7 +20,6 @@ double Random::calcRandom(void){
     	seed[stream] = t;
   	else
     	seed[stream] = t + MODULUS;
-    //cout << "Random" << ((double) seed[stream] / MODULUS) << endl;
   	return ((double) seed[stream] / MODULUS);
 }
 
@@ -33,10 +29,10 @@ void Random::plantSeeds(long x){
     int  j;
     int  s;
 	initialized = 1;
-  	s = stream;                            /* remember the current stream */
-  	selectStream(0);                       /* change to stream 0          */
-  	putSeed(x);                            /* set seed[0]                 */
-  	stream = s;                            /* reset the current stream    */
+  	s = stream;                            // Remember the current stream
+  	selectStream(0);                       // Change to stream 0
+  	putSeed(x);                            // Set seed[0]
+  	stream = s;                            // Reset the current stream
   	for (j = 1; j < STREAMS; j++) {
     	x = A256 * (seed[j - 1] % Q) - R * (seed[j - 1] / Q);
     if (x > 0)
@@ -48,7 +44,7 @@ void Random::plantSeeds(long x){
 
 void Random::putSeed(long x){
   	if (x > 0)
-    	x = x % MODULUS;                       /* correct if x is too large  */
+    	x = x % MODULUS;                       // Correct if x is too large
   	if (x < 0)
     	x = ((unsigned long) time((time_t *) NULL)) % MODULUS;
   	seed[stream] = x;
