@@ -20,7 +20,7 @@ StatisticsOut::StatisticsOut()
 StatisticsOut::StatisticsOut(double clock, double timeAccumulatedQueue, double timeAccumulatedCPU, double timeAccumulatedIO, int processFinish, int maxLargeQueue, double largeAccumulatedQueue){
     totalSimulationTime = clock;
     throughputTime = ( timeAccumulatedCPU / clock );
-    idleTime = totalSimulationTime - throughputTime;
+    idleTime = totalSimulationTime - timeAccumulatedCPU;
 
     queueTime = (timeAccumulatedQueue / processFinish);
     processTime = (timeAccumulatedCPU / processFinish);

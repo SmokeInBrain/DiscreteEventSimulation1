@@ -1,4 +1,4 @@
-numproc 20
+numproc 100
 algorithm FCFS
 interarrival uniforme 1 2
 servicio uniforme 900 1000

@@ -168,7 +168,7 @@ double Processing::activityArrivalProcess(Event eventCurrent, Process processArr
     //Generate next arrival
     if(eventList.getNumEventArrival() < stdIn.getNumProc())                        //Condition: The system can't generate more arrival for maximum case of process arrival
     {
-        Event nextArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, clock);   //Create next arrival
+        Event nextArrival = Event("Arrival", eventList.getNumEventArrival()+1, stdIn, eventCurrent.getTime());   //Create next arrival
         //cout << "Clock: " << clock << " | ClockArrival: " << nextArrival.getTime() << endl;
         eventList.insertEvent(nextArrival);                                                     //And insert in the FEL
     }
