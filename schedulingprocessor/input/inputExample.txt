@@ -1,6 +1,6 @@
 numproc 100
-algorithm FCFS
-interarrival exponential 1000
-servicio exponential 100
-RP normal 20 2
-RIO constant 5
+algorithm RR 10
+interarrival uniform 1 10
+servicio uniform 1 10
+RP uniform 1 10
+RIO constant 1000

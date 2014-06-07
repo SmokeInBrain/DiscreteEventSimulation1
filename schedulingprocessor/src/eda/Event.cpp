@@ -72,6 +72,11 @@ void Event::validateRP(Process processCPU, double clock)
             else
                 time = processCPU.getQuantum() + clock;
         }
+        else
+        {
+            if ( timeMissingProcessing < timeRP )
+                time = timeMissingProcessing + clock;
+        }
     }
 
 
